@@ -1,0 +1,402 @@
+/* Base Styles */
+.work-details-page {
+    display: flex;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background-color: #ffffff;
+}
+
+.sidebar .work-type {
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar .work-type:hover, .sidebar .work-type.selected {
+    background-color: #d2d1d1;
+    color: #1a1a1a;
+}
+
+/* Ensure the icon and text are spaced nicely */
+.sidebar .work-type .fa-icon {
+    margin-right: 10px;
+}
+
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    background-color: #ffffff;
+    margin-bottom :50px;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    width: 95%;
+}
+
+table {
+    /* width: 90%; */
+    border-collapse: collapse;
+    background: #fafafa;
+}
+
+table, th, td {
+    border: 1px solid #eaeaea;
+}
+
+table thead {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+/* Column Width Control */
+table th:nth-of-type(1) { width: 2%; } /* Work Code */
+table th:nth-of-type(2) { width: 12%; } /* Work Code */
+table th:nth-of-type(3) { width: 12%; } /* Work Type */
+table th:nth-of-type(4) { width: 10%; } /* Quantity */
+table th:nth-of-type(5) { width: 5%;  } /* Unit */
+table th:nth-of-type(6) { width: 25%; } /* Details */
+table th:nth-of-type(7) { width: 15%; } /* Remarks */
+table th:nth-of-type(8) { width: 8%; } /* Remarks */
+
+/* Input Field Styling */
+table input[type='number'], table input[type='text'], table select {
+    width: 100%; /* Full width of the cell */
+    max-width: 100%; /* Prevents exceeding cell width */
+    box-sizing: border-box; /* Includes padding and border in width */
+    padding: 4px; /* Adjust as needed */
+    margin: 0; /* Removes default margins */
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+
+table tbody tr {
+    background-color: #ffffff;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+table tbody tr:hover {
+    background-color: #eaeaea;
+}
+
+/* Button Styles */
+button {
+    background-color: #82b283;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    background-color: #8fc292;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .work-details-page {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}
+
+/* Additional Enhancements */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #5a5a5a;
+}
+
+.btn-icon:hover {
+    color: #333;
+}
+
+
+/* ESTIMATION HOME PAGE CSS */
+
+/* Style for the Estimation Main container */
+.estimation-page {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.estimation_block {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.project_block {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 2;
+    background-color: #f2f2f2; 
+    border-radius: 20px;
+}
+
+.project_block_entry{
+    display: flex;
+    flex-direction: row;
+    /* width:50%; */
+}
+
+.uick_links {
+    padding: 50px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    flex: 1; /* Adjusted to take up 1/3 of the space */
+}
+
+
+
+.project_list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.project_box{
+    max-width: 150px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding:10px;
+    border-radius:10px;
+    margin:10px;
+    min-height: 80px;
+}
+
+.cool-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-image: linear-gradient(to right, #6A82FB, #FC5C7D); /* gradient background */
+    color: white; /* text color */
+    text-decoration: none; /* removes underline */
+    border-radius: 5px; /* rounded corners */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); /* subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth hover effect */
+    font-weight: bold;
+    margin: 10px; /* some space around the link */
+    cursor: pointer; /* indicates clickable */
+}
+
+.cool-link:hover {
+    transform: scale(1.05); /* slightly enlarge the link */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25); /* increase shadow on hover */
+}
+
+.button_container{
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.button_container button.copy {
+    transform: scale(0.8);
+    background-color: #2196F3;  /* Blue */
+    color: #ffffff;
+    border-radius: 5px; /* rounded corners */
+}
+
+.button_container button.delete {
+    transform: scale(0.8);
+    background-color: #f44336;
+    color: #ffffff;
+    border-radius: 5px; /* rounded corners */
+}
+
+.button_container button:hover {
+    filter: brightness(0.9);
+}
+
+/* Styles for error messages */
+.error-message {
+    background-color: #f44336; /* Red background for error */
+    color: white;
+    padding: 10px;
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* Buttons inside quick links section */
+.uick_links a {
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: #2196F3;  /* Blue */
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.uick_links a:hover {
+    background-color: #0b75c4;
+}
+
+
+/* SPECIFICATION LISTS CSS */
+.specification_list{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:50px;
+    align-items: center;
+    max-width: 90%;
+    margin-bottom: 100px;
+}  
+
+
+/* Column Width Control */
+#specification_list_table th:nth-of-type(1) { width: 5%; } /* Work Code */
+#specification_list_table th:nth-of-type(2) { width: 5%; } /* Work Code */
+#specification_list_table th:nth-of-type(3) { width: 10%; } /* Work Type */
+#specification_list_table th:nth-of-type(4) { width: 40%; } /* Quantity */
+#specification_list_table th:nth-of-type(5) { width: 7%;  } /* Unit */
+#specification_list_table th:nth-of-type(6) { width: 8%; } /* Details */
+
+  
+  /* specification entry form lists */
+/* Center the form and make it 80% width */
+.specification_form {
+    width: 50%;
+    margin: 20px auto; /* This centers the form horizontally and gives it some vertical spacing */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Align children in the center */
+}
+
+/* Ensure items in Specification_names are stacked vertically */
+.specification_names {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Take full width of the parent */
+    gap: 10px; /* Give a gap between items */
+}
+
+
+input, textarea, button {
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px 15px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.dynamicInputContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.DynamicInput {
+    display: flex;
+    flex-direction: row;
+    border: 0.5px solid grey; /* Add a 1px black border around the .DynamicInput div */
+    padding: 5px; /* Optional: Add padding to create space between border and content */
+    border-radius: 10px;
+}
+
+.DynamicInputCategory {
+    /* flex: 1; */
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    /* align-items: flex-start; */
+    /* justify-content: space-between; Apply equal spacing between items */
+    
+    
+}
+
+.DynamicInputItem {
+    display: flex;
+    
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.DynamicInputItem button {
+    margin-right: 10px;
+    padding: 3px 6px;
+    font-size: 10px;
+}
+
+.DynamicInput button {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.PlaceholderTitle {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+  
+
+.specification_names_row {
+    display: flex;
+}

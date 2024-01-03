@@ -1,0 +1,59 @@
+.navbar {
+  background-color: whitesmoke;
+  /* color: Black; */
+  padding: 1rem;
+  text-align: center;
+}
+
+.navbar a {
+  color: Black;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer {
+  background-color: whitesmoke;
+  color: Black;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.main-content {
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Add more styling as per your requirement */
+
+
+.estimation-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust as needed */
+  padding: 20px;
+  justify-content: center;
+}
+
+.card {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 200px; /* Adjust as needed */
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.icon {
+  display: block;
+  font-size: 50px; /* Adjust the size as needed */
+  margin-bottom: 10px;
+}

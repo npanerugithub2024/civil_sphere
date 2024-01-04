@@ -48,12 +48,13 @@ function EstimationPage() {
     const fetchProjects = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8010/estimator/projects', {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/projects`, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 }
             });
+            
 
             const data = await handleApiError(response);
             console.log("Fetched data:", data);  // Debug: Log what's being received
@@ -82,7 +83,7 @@ function EstimationPage() {
         }
 
         try {
-            const response = await fetch('http://localhost:8010/estimator/projects/', {
+            const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/projects/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -113,7 +114,7 @@ function EstimationPage() {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:8010/estimator/projects/${project_id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/projects/${project_id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -141,7 +142,7 @@ function EstimationPage() {
         }
         const newProjectName = `${project_id} (Copy)`;
         try {
-            const response = await fetch('http://localhost:8010/estimator/projects/', {
+            const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/projects/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

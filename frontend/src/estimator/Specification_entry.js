@@ -131,10 +131,10 @@ function WorkSpecificationForm() {
         console.log("Submitted data",inputs);
 
         if (mode === "edit") {
-            const apiUrl = `http://localhost:8010/estimator/work_specification/${inputs.code}`;
+            const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/estimator/work_specification/${inputs.code}`;
             addOrUpdateWorkSpec(apiUrl, 'PUT');
         } else {
-            const apiUrl = 'http://localhost:8010/estimator/add_work_specification';
+            const apiUrl = '${process.env.REACT_APP_API_BASE_URL}/estimator/add_work_specification';
             addOrUpdateWorkSpec(apiUrl, 'POST');
         }
     };

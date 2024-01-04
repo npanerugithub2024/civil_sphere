@@ -68,8 +68,8 @@ const WorkDetailsPage = () => {
         try {
             // Construct the URL with the projectId, if provided
             const url = projectId 
-                ? `http://localhost:8010/estimator/projects/${projectId}/work-items/`
-                : 'http://localhost:8010/estimator/work-items/';
+                ? `${process.env.REACT_APP_API_BASE_URL}/estimator/projects/${projectId}/work-items/`
+                : '${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/';
             
             const response = await fetch(url); // Fetch data from the API
     
@@ -90,7 +90,7 @@ const WorkDetailsPage = () => {
 // New fetch for work types and codes
     const fetchWorkTypesAndCodes = async () => {
         try {
-            const response = await fetch(`http://localhost:8010/estimator/get_worktype_and_code`);
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/get_worktype_and_code`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -138,8 +138,8 @@ const WorkDetailsPage = () => {
     const handleAddWork = async () => {
         // console.log(params.ProjectId)
         const url = isEditing
-        ? `http://localhost:8010/estimator/work-items/${editingId}`
-        : `http://localhost:8010/estimator/work-items`;
+        ? `${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/${editingId}`
+        : `${process.env.REACT_APP_API_BASE_URL}/estimator/work-items`;
    
         const method = isEditing ? 'PUT' : 'POST';
     
@@ -172,7 +172,7 @@ const WorkDetailsPage = () => {
     // DELETE FUNCTIONS FOR WORK ITEMS
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:8010/estimator/work-items/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/${id}`, {
                 method: 'DELETE',
             });
     
@@ -318,7 +318,7 @@ export const calculate_materials = async (rows, setCalculationResults, setShowRe
     }));
   
     try {
-      const response = await fetch('http://localhost:8010/estimator/calculate_mat/', {
+      const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/calculate_mat/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

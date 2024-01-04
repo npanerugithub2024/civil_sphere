@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
             console.log("Retrieved token:", token); // Debugging line
             if (token) {
                 try {
-                    const { data } = await axios.get('http://localhost:8010/user_authentication/validateToken', {
+                    const { data } = await axios.get('${process.env.REACT_APP_API_BASE_URL}/user_authentication/validateToken', {
                         headers: {
                             Authorization: `${tokenType} ${token}`,
                         },

@@ -78,7 +78,7 @@ const WorkDetailsPage = () => {
 
     const fetchWorkItemsData = async () => {
         try {
-            const response = await fetch('http://localhost:8010/estimator/work-items/'); // Adjust API URL
+            const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/'); // Adjust API URL
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -103,7 +103,7 @@ const WorkDetailsPage = () => {
         // New fetch for work types and codes
         const fetchWorkTypesAndCodes = async () => {
         try {
-            const response = await fetch(`http://localhost:8010/estimator/work-items/${selectedProjectId}`);
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/${selectedProjectId}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -127,8 +127,8 @@ const WorkDetailsPage = () => {
     const handleAddWork = async () => {
         console.log(selectedProjectId)
         const url = isEditing
-        ? `http://localhost:8010/estimator/work-items/${editingId}/${selectedProjectId}`
-        : `http://localhost:8010/estimator/work-items/${selectedProjectId}`;
+        ? `${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/${editingId}/${selectedProjectId}`
+        : `${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/${selectedProjectId}`;
    
         const method = isEditing ? 'PUT' : 'POST';
     
@@ -144,7 +144,7 @@ const WorkDetailsPage = () => {
             }
     
             // After successful deletion, re-fetch the work items data
-            const fetchResponse = await fetch('http://localhost:8010/estimator/work-items/');
+            const fetchResponse = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/');
             if (!fetchResponse.ok) {
                 throw new Error(`HTTP error! status: ${fetchResponse.status}`);
             }
@@ -164,7 +164,7 @@ const WorkDetailsPage = () => {
     
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:8010/estimator/work-items/${id}/${selectedProjectId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/${id}/${selectedProjectId}`, {
                 method: 'DELETE',
             });
     
@@ -173,7 +173,7 @@ const WorkDetailsPage = () => {
             }
     
             // After successful deletion, re-fetch the work items data
-            const fetchResponse = await fetch('http://localhost:8010/estimator/work-items/');
+            const fetchResponse = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/');
             if (!fetchResponse.ok) {
                 throw new Error(`HTTP error! status: ${fetchResponse.status}`);
             }
@@ -305,7 +305,7 @@ export const calculate_materials = async (rows, setCalculationResults, setShowRe
     }));
   
     try {
-      const response = await fetch('http://localhost:8010/estimator/calculate_mat/', {
+      const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/calculate_mat/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

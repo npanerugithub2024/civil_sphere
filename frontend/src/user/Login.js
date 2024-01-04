@@ -18,7 +18,7 @@ const Login = () => {
     formData.append('password', password);
 
     try {
-        const { data } = await axios.post('http://localhost:8010/user_authentication/token', formData);
+        const { data } = await axios.post('${process.env.REACT_APP_API_BASE_URL}/user_authentication/token', formData);
         console.log("Login successful, received data:", data);  // Debugging line
         login(data); // Update context with user data
         navigate('/'); // Redirect to home page

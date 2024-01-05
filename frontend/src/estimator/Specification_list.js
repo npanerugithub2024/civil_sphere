@@ -7,7 +7,7 @@ function SpecificationList() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/all_work_specifications')
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/all_work_specifications`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("HTTP error " + response.status);
@@ -31,7 +31,7 @@ function SpecificationList() {
                 });
                 if (response.ok) {
                     console.log('Successfully deleted specification:', code);
-                    const updatedSpecifications = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/all_work_specifications').then(res => res.json());
+                    const updatedSpecifications = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/all_work_specifications`).then(res => res.json());
                     setSpecifications(updatedSpecifications);
                 } else {
                     console.error('Failed to delete specification:', code);

@@ -1,10 +1,8 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './base/Navbar';
 import Footer from './base/Footer';
 import HomePage from './base/HomePage';
-import EstimationPages from './estimator/Estimation_main';
 import WorkDetailsPage from './estimator/EstimationDetailsPage';
 import EstimationPage from './estimator/Estimation_homepage';
 import WorkSpecificationForm from './estimator/Specification_entry';
@@ -33,11 +31,11 @@ const App = () => {
                                     <EstimationPage />
                                 </PrivateRoute>
                             } />
-                            <Route path="/estimationpages" element={
+                            {/* <Route path="/estimationpages" element={
                                 <PrivateRoute>
                                     <EstimationPages />
                                 </PrivateRoute>
-                            } />
+                            } /> */}
                             <Route path="/specification_list" element={
                                 <PrivateRoute>
                                     <SpecificationList />

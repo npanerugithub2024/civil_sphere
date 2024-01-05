@@ -70,8 +70,8 @@ function SpecificationList() {
                             <td>{spec.description.substring(0, 100)}...</td>
                             <td>{spec.unit}</td>
                             <td>
-                                <button className="btn-icon" onClick={() => navigate(`/specification_entry`, { state: { selectedSpec: spec } })}>✏️</button>
-                                <button className="btn-icon" onClick={() => handleDelete(spec.code)}>🗑️ </button>
+                                {/* <button className="btn-icon" onClick={() => navigate(`/specification_entry`, { state: { selectedSpec: spec } })}>✏️</button> */}
+                                {/* <button className="btn-icon" onClick={() => handleDelete(spec.code)}>🗑️ </button> */}
                             </td>
                         </tr>
                     ))}

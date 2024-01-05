@@ -134,7 +134,7 @@ function WorkSpecificationForm() {
             const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/estimator/work_specification/${inputs.code}`;
             addOrUpdateWorkSpec(apiUrl, 'PUT');
         } else {
-            const apiUrl = '${process.env.REACT_APP_API_BASE_URL}/estimator/add_work_specification';
+            const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/estimator/add_work_specification`;
             addOrUpdateWorkSpec(apiUrl, 'POST');
         }
     };

@@ -83,7 +83,7 @@ function EstimationPage() {
         }
 
         try {
-            const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/projects/', {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/projects/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ function EstimationPage() {
         }
         const newProjectName = `${project_id} (Copy)`;
         try {
-            const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/projects/', {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/projects/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

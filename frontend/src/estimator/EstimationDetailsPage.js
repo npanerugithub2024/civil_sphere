@@ -69,7 +69,7 @@ const WorkDetailsPage = () => {
             // Construct the URL with the projectId, if provided
             const url = projectId 
                 ? `${process.env.REACT_APP_API_BASE_URL}/estimator/projects/${projectId}/work-items/`
-                : '${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/';
+                : `${process.env.REACT_APP_API_BASE_URL}/estimator/work-items/`;
             
             const response = await fetch(url); // Fetch data from the API
     
@@ -318,7 +318,7 @@ export const calculate_materials = async (rows, setCalculationResults, setShowRe
     }));
   
     try {
-      const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/estimator/calculate_mat/', {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/calculate_mat/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

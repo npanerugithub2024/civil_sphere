@@ -1,0 +1,1105 @@
+[
+    {
+      "code": "BMW_ground_1:6",
+      "description": "Brick Masonry work(First class) in Cement Sand mortar 1:6 ratio in  ground floor in perfect line and level, finishing including wetting the bricks, packing the joints,and curing, all materials and labour complete as per instruction , specification and drawing.\n",
+      "unit": "cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "1.5"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "2.4"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Brick (First_Class)",
+          "unitQuantity": "no.",
+          "unit": "560"
+        },
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.07"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.3"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "100"
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Unskilled(3% of labour)",
+          "unitQuantity": "no.",
+          "unit": "0.006"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Brick Masonry Work"
+    },
+    {
+      "code": "BMW_upper_1:6",
+      "description": "Brick Masonry work(First class) in Cement Sand mortar 1:6 ratio in floors above  ground floor in perfect line and level, finishing including wetting the bricks, packing the joints,and curing, all materials and labour complete as per instruction , specification and drawing.\n",
+      "unit": "cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "1.5"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "2.9"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Brick (First_Class)",
+          "unitQuantity": "no.",
+          "unit": "560"
+        },
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.07"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.3"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "100"
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Unskilled(3% of labour)",
+          "unitQuantity": "no.",
+          "unit": "0.021"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Brick Masonry Work"
+    },
+    {
+      "code": "BMW_upper_1:4",
+      "description": "Brick Masonry work(First class) in Cement Sand mortar 1:4 ratio in floors above  ground floor in perfect line and level, finishing including wetting the bricks, packing the joints,and curing, all materials and labour complete as per instruction , specification and drawing.\n",
+      "unit": "cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "1.5"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "2.9"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Brick (First_Class)",
+          "unitQuantity": "no.",
+          "unit": "560"
+        },
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.1"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.28"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "130"
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Unskilled(3% of labour)",
+          "unitQuantity": "no.",
+          "unit": "0.021"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Brick Masonry Work"
+    },
+    {
+      "code": "BMW_ground_1:4",
+      "description": "Brick Masonry work(First class) in Cement Sand mortar 1:6 ratio in ground floor in perfect line and level, finishing including wetting the bricks, packing the joints,and curing, all materials and labour complete as per instruction , specification and drawing.\n",
+      "unit": "cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "1.5"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "2.4"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Brick (First_Class)",
+          "unitQuantity": "no.",
+          "unit": "560"
+        },
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.1"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.28"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "130"
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Unskilled(3% of labour)",
+          "unitQuantity": "no.",
+          "unit": "0.006"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Brick Masonry Work"
+    },
+    {
+      "code": "SC1",
+      "description": "Site preparation for starting the construction work and clearing the site all complete after completion of the work as per the instruction of site in charge ",
+      "unit": "Sqm",
+      "manpower": [
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.023"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Shovel ",
+          "unitQuantity": "no.",
+          "unit": "0"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Site Preparation Work"
+    },
+    {
+      "code": "EW_cut_hard",
+      "description": "E/W in Excavation in hard soil or soft stone in foundation manually including 10m hauling distance & 1.5m lift all complete work as per instruction. ",
+      "unit": "Cum",
+      "manpower": [
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.8"
+        }
+      ],
+      "materials": [],
+      "miscellaneous": [
+        {
+          "name": "Unskilled(3% of labour)",
+          "unitQuantity": "no.",
+          "unit": "0.024"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Excavation Work"
+    },
+    {
+      "code": "EW_cut_excavator",
+      "description": "E/W in Excavation in all type of  soils(OS, BMS,HS, MS, SR) by using  Excavator 0.8 cum. including 30 m hauling distance & 1.5m lift all complete work as per instruction.\n",
+      "unit": "Cum",
+      "manpower": [],
+      "materials": [
+        {
+          "name": "Diesel",
+          "unitQuantity": "ltr",
+          "unit": "0.1248"
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Excavator (0.8 cum )",
+          "unitQuantity": "hr.",
+          "unit": "0.0104"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Excavation Work"
+    },
+    {
+      "code": "EW_fill",
+      "description": "Earth back filling in trenches Floor in 15cm layers with water sprinkling and manual compaction with 10m hauling as per specification and instruction all complete\n",
+      "unit": "Cum",
+      "manpower": [
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.5"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "5"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Backfilling Work"
+    },
+    {
+      "code": "SW_stone",
+      "description": "Supplying and laying stone soling at floors and foundation  as per instruction,specification and drawing all  complete.\n",
+      "unit": "Cum",
+      "manpower": [
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "1.5"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Block stone",
+          "unitQuantity": "cum",
+          "unit": "1"
+        },
+        {
+          "name": "Bond stone",
+          "unitQuantity": "cum",
+          "unit": "0.2"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Soling Work"
+    },
+    {
+      "code": "RW",
+      "description": "TMT (Fe500 ) of good Quality NS Standard Reinforcement work for R.C.C work including supply, straighting, cutting, bending, binding and laying of different diameter steel rod in all types of R.C.C work as per design ,drawing ,specification and instruction all complete work\n",
+      "unit": "ton",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "12"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "12"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Rebar (TMT)",
+          "unitQuantity": "ton \n",
+          "unit": "1.05"
+        },
+        {
+          "name": "Binding wire",
+          "unitQuantity": "kg",
+          "unit": "10"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Rebar Work"
+    },
+    {
+      "code": "PW_1:4_12.5",
+      "description": "Supplying and laying 12.5 mm thick cement plastering work in 1:4 cement mortar on walls of good finish including cleaning and wetting the surface and curing the work all complete as per specification  and approval of site Engineer \n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.12"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.16"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.00538"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.0146"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "20"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Plaster Work"
+    },
+    {
+      "code": "PW_1:6_20",
+      "description": "Supplying and laying 20 mm thick cement plastering work in 1:6cement mortar on walls of good finish including cleaning and wetting the surface and curing the work all complete as per specification  and approval of site Engineer \n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.14"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.19"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.0057"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.0235"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "20"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Plaster Work"
+    },
+    {
+      "code": "PW_1:4_20",
+      "description": "Supplying and laying 20 mm thick cement plastering work in 1:4cement mortar on walls of good finish including cleaning and wetting the surface and curing the work all complete as per specification  and approval of site Engineer \n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.14"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.19"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.0081"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.022"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "20"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Plaster Work"
+    },
+    {
+      "code": "PW_1:6_12.5",
+      "description": "Supplying and laying 12.5 mm thick cement plastering work in 1:6 cement mortar on walls of good finish including cleaning and wetting the surface and curing the work all complete as per specification  and approval of site Engineer \n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.12"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.16"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.00382"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.0157"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "20"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Plaster Work"
+    },
+    {
+      "code": "PW_patti_20",
+      "description": "Providing and applying 20mm cement sand strip (double line pani patti drip water course) over plaster on each floor over slab edges all complete  as per  pecification, drawings & instructions of  engineer.\n",
+      "unit": "Rm",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.025"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.01"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.007"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.004"
+        },
+        {
+          "name": "Water proofing",
+          "unitQuantity": "ltr",
+          "unit": "0.0001"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Plaster Work"
+    },
+    {
+      "code": "KM_50",
+      "description": "Providing and laying 50mm thick screeding in roof and floor 1:2:4 (1cement:2 course sand:4 graded stone aggregate 10mm nominal size) including 1:1 cement sand punning in perfect line and level all complete as per specification, drawings and instruction of engineer\n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.125"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.25"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.017"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.023"
+        },
+        {
+          "name": "20mm gitti",
+          "unitQuantity": "ltr",
+          "unit": "0.046"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "10"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Floor Finish Work"
+    },
+    {
+      "code": "TW_PGT",
+      "description": "Supplying and laying of Porcelain glazed tile on wall  (approved brand: kajaria, somany, nitco or equivalent) in cement sand mortar C/M (1:4) of good finish including grouting joints, cost of all materials and accessories all complete as per specification , drawings and instruction of engineer.\n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.13"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.45"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.0056"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.00152"
+        },
+        {
+          "name": "White Cement",
+          "unitQuantity": "kg",
+          "unit": "0.3228"
+        },
+        {
+          "name": "Porcelain Glazed Tile",
+          "unitQuantity": "sqm \n",
+          "unit": "1.1"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Floor Finish Work"
+    },
+    {
+      "code": "TW_PNGT",
+      "description": "Supplying and laying of non glazed tiles on floor, (approved brand: kajaria, somany, nitco or equivalent) in cement sand mortar C/M (1:4) of good finish including grouting joints, cost of all materials and accessories all complete as per specification , drawings and instruction of engineer.\n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.13"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.45"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.0056"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.00152"
+        },
+        {
+          "name": "White Cement",
+          "unitQuantity": "kg",
+          "unit": "0.3228"
+        },
+        {
+          "name": "Porcelain Non Glazed Tile",
+          "unitQuantity": "sqm \n",
+          "unit": "1.1"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Floor Finish Work"
+    },
+    {
+      "code": "KM_3",
+      "description": "Cement Punning works all complete ",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.1"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.1"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.00532"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Floor Finish Work"
+    },
+    {
+      "code": "TW_Granite",
+      "description": "Supplying and laying of 16mm thick granite over 20mm thick cement sand mortar C/M (1:4) of good finish including grinding and polishing all complete.\n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.2"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "2.15"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement PPC",
+          "unitQuantity": "ton",
+          "unit": "0.0013"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.0183"
+        },
+        {
+          "name": "16mm granite",
+          "unitQuantity": "sqm",
+          "unit": "1.1"
+        },
+        {
+          "name": "Oxyalic Acid",
+          "unitQuantity": "kg",
+          "unit": "0.037"
+        },
+        {
+          "name": "Wax Polish",
+          "unitQuantity": "kg",
+          "unit": "0.0118"
+        },
+        {
+          "name": "Turpentine Oil",
+          "unitQuantity": "ltr",
+          "unit": "0.0538"
+        },
+        {
+          "name": "Carborundum Stone",
+          "unitQuantity": "ls",
+          "unit": "1"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Floor Finish Work"
+    },
+    {
+      "code": "Polythene",
+      "description": "Providing, Supplying and laying 500 guage Plastic Sheet  in floor for damp proofing all complete as per instruction of  engineer.\n",
+      "unit": "Sqm",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.06"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.06"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Polythene 500g",
+          "unitQuantity": "sqm",
+          "unit": "1.1"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Floor Finish Work"
+    },
+    {
+      "code": "Concreting-M20-machine",
+      "description": "Plain cement concrete M20(1:1.5:3) with cement sand  crushed aggregate using machine in superstructure including 30m hauling as per specifications all complete.\n",
+      "unit": "Cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.5"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "3.5"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement",
+          "unitQuantity": "ton",
+          "unit": "0.4"
+        },
+        {
+          "name": "40mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.57"
+        },
+        {
+          "name": "20mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.29"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.425"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "200"
+        },
+        {
+          "name": "Diesel",
+          "unitQuantity": "ltr",
+          "unit": "3"
+        },
+        {
+          "name": "Petrol",
+          "unitQuantity": "ltr",
+          "unit": "0.1"
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Mixer",
+          "unitQuantity": "hr",
+          "unit": "0.6"
+        },
+        {
+          "name": "Vibrator",
+          "unitQuantity": "hr",
+          "unit": "0.25"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Concreting Work"
+    },
+    {
+      "code": "Concreting-M25-machine",
+      "description": "Plain cement concrete M25(1:1:2) with cement sand  crushed aggregate using machine in superstructure including 30m hauling as per specifications all complete.\n",
+      "unit": "Cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.5"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "3.5"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement",
+          "unitQuantity": "ton",
+          "unit": "0.61"
+        },
+        {
+          "name": "40mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.64"
+        },
+        {
+          "name": "20mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.21"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.425"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "300"
+        },
+        {
+          "name": "Diesel",
+          "unitQuantity": "ltr",
+          "unit": "3"
+        },
+        {
+          "name": "Petrol",
+          "unitQuantity": "ltr",
+          "unit": "0.1"
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Mixer",
+          "unitQuantity": "hr",
+          "unit": "0.6"
+        },
+        {
+          "name": "Vibrator",
+          "unitQuantity": "hr",
+          "unit": "0.25"
+        }
+      ],
+      "labour_rate": null,
+      "work_type": "Concreting Work"
+    },
+    {
+      "code": "Shuttering-Ply12mm-Beam",
+      "description": "Centering and shuttering with approved 12mm waterproof plywood for slab with necessary mild steel propping, scaffolding,  staging, supporting. Cutting holes for utilization works and removal of formwork and lead  upto 30 m etc all complete as per instruction, specification and drawing.\n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.172"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.257"
+        }
+      ],
+      "materials": [
+        {
+          "name": "12mm ply",
+          "unitQuantity": "sqm \n",
+          "unit": "0.165"
+        },
+        {
+          "name": "Local wood",
+          "unitQuantity": "cum",
+          "unit": "0.00232"
+        },
+        {
+          "name": "Metal Props (NMB50M)i",
+          "unitQuantity": "no.",
+          "unit": "0.0044"
+        },
+        {
+          "name": "Nails",
+          "unitQuantity": "kg",
+          "unit": "0.25"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Formwork"
+    },
+    {
+      "code": "Shuttering-Ply12mm-Slab",
+      "description": "Centering and shuttering with approved 12mm waterproof plywood for slab with necessary mild steel propping, scaffolding,  staging, supporting. Cutting holes for utilization works and removal of formwork and lead  upto 30 m etc all complete as per instruction, specification and drawing.\n",
+      "unit": "Sqm \n",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "0.172"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "0.257"
+        }
+      ],
+      "materials": [
+        {
+          "name": "12mm ply",
+          "unitQuantity": "sqm \n",
+          "unit": "0.165"
+        },
+        {
+          "name": "Local wood",
+          "unitQuantity": "cum",
+          "unit": "0.00232"
+        },
+        {
+          "name": "Metal Props (NMB50M)i",
+          "unitQuantity": "no.",
+          "unit": "0.0044"
+        },
+        {
+          "name": "Nails",
+          "unitQuantity": "kg",
+          "unit": "0.25"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Formwork"
+    },
+    {
+      "code": "Concreting-M10",
+      "description": "Plain cement concrete M10(1:3:6) with cement sand  crushed aggregate under wall, floor & column foundation etc.  manually including protection of sides, laying  compacting, curing with all complete.\n",
+      "unit": "Cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "1"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "4"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement",
+          "unitQuantity": "ton",
+          "unit": "0.22"
+        },
+        {
+          "name": "40mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.65"
+        },
+        {
+          "name": "20mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.24"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.47"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "120"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Concreting Work"
+    },
+    {
+      "code": "Concreting-M15",
+      "description": "Plain cement concrete M15(1:2:4) with cement sand  crushed aggregate manually in foundation and walls including 30m hauling as per specifications all complete.\n",
+      "unit": "Cum",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "no.",
+          "unit": "1"
+        },
+        {
+          "name": "Unskilled",
+          "unitQuantity": "no.",
+          "unit": "4"
+        }
+      ],
+      "materials": [
+        {
+          "name": "Cement",
+          "unitQuantity": "ton",
+          "unit": "0.32"
+        },
+        {
+          "name": "40mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.52"
+        },
+        {
+          "name": "20mm gitti",
+          "unitQuantity": "cum",
+          "unit": "0.33"
+        },
+        {
+          "name": "Coarse Sand",
+          "unitQuantity": "cum",
+          "unit": "0.445"
+        },
+        {
+          "name": "Water",
+          "unitQuantity": "ltr",
+          "unit": "150"
+        }
+      ],
+      "miscellaneous": [],
+      "labour_rate": null,
+      "work_type": "Concreting Work"
+    },
+    {
+      "code": "CC2",
+      "description": "Planting saplings on hills",
+      "unit": "no.",
+      "manpower": [
+        {
+          "name": "Skilled",
+          "unitQuantity": "2",
+          "unit": "no."
+        }
+      ],
+      "materials": [
+        {
+          "name": "Saplings",
+          "unitQuantity": "1",
+          "unit": "no."
+        }
+      ],
+      "miscellaneous": [
+        {
+          "name": "Shovel",
+          "unitQuantity": "1",
+          "unit": "no."
+        }
+      ],
+      "labour_rate": "250",
+      "work_type": "Planting"
+    }
+  ]

@@ -33,4 +33,79 @@
     margin-right: 20px;
     color: #334;
   }
+
+
+
+
+  /* ContactUs.css */
+
+/* Contact container */
+.contact-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact form title */
+.contact-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 16px;
+}
+
+/* Form label styles */
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Form input styles */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Form textarea styles */
+.form-textarea {
+  resize: vertical;
+}
+
+/* Form button styles */
+.form-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
   

@@ -12,11 +12,12 @@
 }
 
 .footer {
+  margin-top:auto;
   background-color: whitesmoke;
   color: Black;
   text-align: center;
   padding: 1rem;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   width: 100%;
 }

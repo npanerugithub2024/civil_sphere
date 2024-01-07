@@ -4,6 +4,8 @@ import './Estimator.css';
 import Mat_Table from './Mat_Table.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRoad, faTrowelBricks, faTree, faPlus, faTrowel,faTable, faPersonDigging, faFillDrip, faVectorSquare, faTools, faRulerCombined,faRocket, faIcons } from '@fortawesome/free-solid-svg-icons';
+import * as XLSX from 'xlsx';
+
 
 const WorkDetailsPage = () => {
     const params = useParams();
@@ -298,7 +300,7 @@ const WorkDetailsPage = () => {
             <p></p>
             <button onClick={() => calculate_materials(filteredWorkItems, setCalculationResults, setShowResults)}>Calculate Materials</button>     
             {showResults && <Mat_Table data={calculationResults} />}  {/* Conditionally render the ResultsTable */}
-    
+            {showResults && <button onClick={() => exportToExcel(filteredWorkItems, calculationResults)}>Export to Excel</button>}
         </main>
 
 
@@ -339,3 +341,53 @@ export const calculate_materials = async (rows, setCalculationResults, setShowRe
     }
   };
   
+
+  function exportToExcel(rows, calculationResults) {
+    // Create a new workbook
+    const wb = XLSX.utils.book_new();
+  
+    // Convert BOQ rows to the format suitable for Excel
+    const boqData = rows.map((row, index) => ({
+        'S.N.': index + 1,
+        'Code': row.work_code,
+        'Work Type': row.work_type,
+        'Unit' : row.unit,
+        'Quantity': row.quantity,
+        'Remarks': row.remarks,
+        'Details': row.details
+    }));
+  
+    // Convert Mat_Table data to the format suitable for Excel
+    const matTableData = [];
+  
+    let serialNumber = 1;
+    for (let category in calculationResults) {
+        const categoryData = calculationResults[category];
+        for (let name in categoryData) {
+            categoryData[name].forEach(value => {
+                matTableData.push({
+                    'S.N.': serialNumber++,
+                    'Type': capitalizeFirstLetter(category),
+                    'Name': name,
+                    'Quantity': value.quantity,
+                    'Unit Quantity': value.unitQuantity
+                });
+            });
+        }
+    }
+  
+    // Convert data to Excel worksheet
+    const ws1 = XLSX.utils.json_to_sheet(boqData);
+    const ws2 = XLSX.utils.json_to_sheet(matTableData);
+  
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws1, "BOQ");
+    XLSX.utils.book_append_sheet(wb, ws2, "Mat_Table");
+  
+    // Save the workbook
+    XLSX.writeFile(wb, "exported_data.xlsx");
+  }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }

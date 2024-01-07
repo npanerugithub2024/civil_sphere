@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './base/Navbar';
 import Footer from './base/Footer';
 import HomePage from './base/HomePage';
+import About from './base/About';
+import ContactUs from './base/ContactUs';
+
 import WorkDetailsPage from './estimator/EstimationDetailsPage';
 import EstimationPage from './estimator/Estimation_homepage';
 import WorkSpecificationForm from './estimator/Specification_entry';
@@ -24,6 +27,8 @@ const App = () => {
                             <Route path="/" element={<HomePage />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/signup" element={<Signup />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contactus" element={<ContactUs />} />
 
                             {/* Wrap the component with PrivateRoute within the element prop */}
                             <Route path="/estimationpage" element={

@@ -8,20 +8,26 @@ import './Navbar.css';  // Make sure to create this CSS file in the same folder
 const Navbar = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate(); // Initialize useNavigate hook
-    // console.log("user is",user);
 
     const handleLogout = () => {
-        logout(); // Call the logout function from your auth context
-        navigate('/'); // Redirect to the homepage
+        // Display a confirmation dialog
+        const confirmLogout = window.confirm("Are you sure you want to logout?");
+        if (confirmLogout) {
+            logout(); // If the user confirms, call the logout function from your auth context
+            navigate('/'); // Redirect to the homepage
+        }
+        // If the user cancels, do nothing and stay on the current page
     };
-
 
     return (
         <nav className="navbar">
             <div className="nav-links">
                 <Link to="/">Home</Link>
                 <Link to="/estimationpage">Estimate</Link>
-                {/* <Link to="/estimationpages">Estimates</Link> */}
+                <Link to="/contactus">Contact Us</Link>
+                <Link to="/about">About</Link>
+                
+                
             </div>
             <div className="nav-user">
                 {!user && <Link to="/login">Login</Link>}

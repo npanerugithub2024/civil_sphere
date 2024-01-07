@@ -1,4 +1,5 @@
 import React from 'react';
+import './Navbar.css';  // Make sure to create this CSS file in the same folder
 
 const Footer = () => {
     return (

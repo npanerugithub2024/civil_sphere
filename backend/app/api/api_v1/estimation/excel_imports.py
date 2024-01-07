@@ -59,8 +59,10 @@ def parse_csv_data(df, project_id, codes_dw):
         if len(row) < 3 or pd.isnull(row[2]):
             continue
 
-        description = preprocess_text(row[0]) + " (" + preprocess_text(row[1]) + ")" 
-        unit = row[1].strip() if len(row) > 1 else None
+        # description = preprocess_text(row[0]) 
+        description = row[0] 
+        
+        unit_value = row[1].strip() if len(row) > 1 else None
         
         # Try to convert quantity to float, skip the row if it fails
         try:
@@ -71,10 +73,10 @@ def parse_csv_data(df, project_id, codes_dw):
         # Find the most similar code for the description
         most_similar_code = find_most_similar_codes([description], specifications)[0]
         work_type = next((item['work_type'] for item in specifications if item['code'] == most_similar_code), None)
-
+        unit = next((item['unit'] for item in specifications if item['code'] == most_similar_code), None)
         # Create a work item dictionary
         work_item = {
-            'details': description,
+            'details': description +  unit_value,
             'unit': unit,
             'quantity': quantity,
             'work_code': most_similar_code,

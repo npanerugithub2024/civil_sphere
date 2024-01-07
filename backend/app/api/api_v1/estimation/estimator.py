@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter , logger,HTTPException, Body, Depends
+from fastapi import FastAPI, APIRouter , logger,HTTPException, Body, Depends,UploadFile,File
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -7,7 +7,10 @@ from pymongo.errors import DuplicateKeyError
 from collections import defaultdict
 from bson import ObjectId
 from ..users.user_authentication import User, get_current_user
-
+import pandas as pd
+from io import StringIO
+from .excel_imports import find_most_similar_codes,parse_csv_data
+from fastapi.responses import JSONResponse
 
 
 app = FastAPI()
@@ -19,6 +22,9 @@ specification_collection = database.specification_list
 workdetails_collection = database.workdetails_list
 project_collections = database.project  # Collection for projects
 workitem_collection = database.workitems  # Collection for work items
+
+
+
 
 
 
@@ -54,7 +60,6 @@ class Project(BaseModel):
     user_id: Optional[str] = None  # Add a field for the user ID
 
 
-
 class WorkItemBase(BaseModel):
     # id: str = Field(default_factory=lambda: str(ObjectId()), alias="_id")
     project_id: str  # Reference to the Project ID
@@ -87,6 +92,7 @@ class InputData(BaseModel):
     code: str
     quantity: float
     remarks: Optional[str]
+
 
 # just commenting out
 @router.post("/add_bulk_work_specifications") 
@@ -170,7 +176,7 @@ async def get_all_work_specifications():
 
 @router.get("/get_codes_and_descriptions")
 async def get_codes_and_descriptions():
-    cursor = specification_collection.find({}, {"_id": 0, "code": 1, "description": 1, "unit" : 1})  # Only get code and description fields
+    cursor = specification_collection.find({}, {"_id": 0, "code": 1, "description": 1, "unit" : 1,"work_type": 1,})  # Only get code and description fields
     codes_and_descriptions = await cursor.to_list(length=100)
     return codes_and_descriptions
 
@@ -228,7 +234,7 @@ async def calculate_materials(input_data: List[InputData]):
 @router.get("/get_worktype_and_code")
 async def get_worktype_and_code():
     # Only get work_type, code, and unit fields
-    cursor = specification_collection.find({}, {"_id": 0, "work_type": 1, "code": 1, "unit": 1})
+    cursor = specification_collection.find({}, {"_id": 0, "work_type": 1, "code": 1, "unit": 1,"description" :1 })
     worktypes_and_codes = await cursor.to_list(length=100)
 
     worktype_to_codes = defaultdict(list)
@@ -243,13 +249,15 @@ async def get_worktype_and_code():
     return dict(worktype_to_codes)
 
 
-# BO INPUT, UPDATE, DELETE AND GETTING 
+# BILL OF UANTITIES BO INPUT, UPDATE, DELETE AND GETTING 
 @router.post("/work-items/", response_model=WorkItemInDB)
 async def create_work_item(work_item: WorkItemCreate):
     # Optionally, validate project_id here
     result = await workdetails_collection.insert_one(work_item.dict())
     new_work_item = await workdetails_collection.find_one({"_id": result.inserted_id})
     return WorkItemInDB(**new_work_item, id=str(new_work_item["_id"]))
+
+
 
 @router.get("/work-items/{id}", response_model=WorkItemInDB)
 async def get_work_item(id: str):
@@ -352,3 +360,38 @@ async def delete_project(project_id: str, current_user: User = Depends(get_curre
 # async def delete_all_projects():
 #     await project_collections.delete_many({})
 #     return {"status": "All projects deleted successfully"}
+
+
+
+# ########## IMPORTS AND EXPORTS
+@router.post("/upload-csv-and-create-project/")
+async def upload_csv_and_create_project(file: UploadFile = File(...), current_user: User = Depends(get_current_user)):
+    # Step 1: Create a new project with the name of the file
+    file_name = file.filename.rsplit('.', 1)[0]
+    project_data = {
+        'name': file_name,
+        'description': 'Generated from CSV upload',  # Add other fields as necessary
+        'user_id': current_user.username
+    }
+    new_project = await project_collections.insert_one(project_data)
+    
+    project_id = str(new_project.inserted_id)
+    print("project id is",project_id)
+
+    # Step 2: Read the data from the CSV file
+    content = await file.read()
+    df = pd.read_csv(StringIO(content.decode('utf-8')), header=None)
+
+    # Step 3: Parse the CSV data and assign user codes and work types
+    # Assume the following function returns a list of dictionaries with assigned codes
+    codes_dw = await get_codes_and_descriptions()
+    parsed_data = parse_csv_data(df, project_id, codes_dw)
+
+    # Step 4: Save the parsed data to MongoDB under the user who is logged in
+    for item_data in parsed_data:
+        print(item_data)
+        work_item = WorkItemCreate(**item_data)
+        await create_work_item(work_item)
+
+    return JSONResponse(content={"message": "File processed and data saved successfully", "project_id": project_id})
+

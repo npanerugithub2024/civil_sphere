@@ -6,4 +6,5 @@ motor
 python-jose[cryptography]
 passlib[bcrypt]
 email-validator
-
+pandas
+scikit-learn

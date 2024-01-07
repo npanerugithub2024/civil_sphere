@@ -21,8 +21,8 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --port 8010 --reload
     environment:
       - MONGO_URL=mongodb://mongodb:27018/
-    # networks:
-      # - civil_air
+    volumes:
+      - ./backend/app:/app 
   
   mongodb:
     hostname : mongodb
@@ -36,14 +36,14 @@ services:
     logging: *default-logging
     command: mongod --port 27018
   
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
 
 volumes:
   mongodb_data:

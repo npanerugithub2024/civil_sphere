@@ -9,6 +9,8 @@ function EstimationPage() {
     const [errorMessage, setErrorMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedProjectId, setSelectedProjectId] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+
     const { user } = useAuth(); // Get the current user's details
     useEffect(() => {
         fetchProjects();
@@ -162,6 +164,43 @@ function EstimationPage() {
         }
     };
 
+    const handleFileUpload = async (event) => {
+        const file = event.target.files[0];
+        if (!file) {
+            console.error("Select File ");
+            setErrorMessage("Please select a file to upload");
+            return;
+        }
+    
+        const formData = new FormData();
+        formData.append('file', file);
+    
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/estimator/upload-csv-and-create-project/`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                throw new Error("Failed to upload CSV");
+            }
+    
+            const result = await response.json();
+            console.log("File uploaded successfully", result);
+            fetchProjects(); // Refresh the projects list
+        } catch (error) {
+            console.error("Error uploading CSV:", error);
+            setErrorMessage("Error uploading CSV");
+        }
+    };
+
+    
+    
+    
+
     return (
         <div className="estimation-page">
             <h1>Estimation Page</h1>
@@ -179,8 +218,20 @@ function EstimationPage() {
                         placeholder="New project name" 
                     />
 
-                        <button className="submit_button blue" type="submit" onClick={createProject}>Add New Project</button>
+                    <button className="submit_button blue" type="submit" onClick={createProject}>Add New Project</button>
                     </div>
+                    <div >
+                    <input 
+                        type="file" 
+                        onChange={handleFileUpload}
+                        accept=".csv"
+                        
+                    />
+                    <span style={{ marginLeft: '10px' }}>Select a csv file </span>
+                    </div>
+
+                   
+
 
                     
                     <ProjectList

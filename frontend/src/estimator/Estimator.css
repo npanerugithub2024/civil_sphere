@@ -6,6 +6,10 @@
     background-color: #ffffff;
 }
 
+.sidebar{
+    min-width : 200px;
+}
+
 .sidebar .work-type {
     display: flex;
     align-items: center;
@@ -307,6 +311,15 @@ button:hover {
 #specification_list_table th:nth-of-type(5) { width: 7%;  } /* Unit */
 #specification_list_table th:nth-of-type(6) { width: 8%; } /* Details */
 
+
+/* Material Tables colum width control */
+#mat-table th:nth-of-type(1){width :5%}
+#mat-table th:nth-of-type(2){width :15%}
+#mat-table th:nth-of-type(3){width :10%}
+#mat-table th:nth-of-type(3){width :10%}
+#mat-table th:nth-of-type(4){width :15%}
+#mat-table th:nth-of-type(5){width :15%}
+#mat-table th:nth-of-type(6){width :40%}
   
   /* specification entry form lists */
 /* Center the form and make it 80% width */
@@ -335,17 +348,17 @@ input, textarea, button {
     font-size: 14px;
 }
 
-button {
+/* button {
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     padding: 8px 15px;
-}
+} */
 
-button:hover {
+/* button:hover {
     background-color: #45a049;
-}
+} */
 
 .dynamicInputContainer {
     display: flex;
@@ -399,4 +412,23 @@ button:hover {
 
 .specification_names_row {
     display: flex;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    margin: 2px;
+    outline: none;
+}
+
+.icon-btn:focus {
+    outline: none;
+}
+
+/* Optional: You can add hover effects if needed */
+.icon-btn:hover {
+    /* Example hover effect */
+    opacity: 0.8;
 }

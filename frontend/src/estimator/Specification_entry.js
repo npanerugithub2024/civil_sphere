@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // import './Specification_entry.css';
 
 
-function DynamicInput({ items, setItems, placeholder }) {
+function DynamicInput({ items, setItems, placeholder, readOnly }) {
     const handleInputChange = (index, field, value) => {
         const newItems = [...items];
         newItems[index][field] = value;
@@ -24,25 +24,29 @@ function DynamicInput({ items, setItems, placeholder }) {
     return (
         <div className="DynamicInput">
             <h3 className="PlaceholderTitle">{placeholder}</h3>
-            <button onClick={addField}>+</button>
+            {!readOnly && <button onClick={addField}>+</button>}
             <div className="DynamicInputCategory">
                 {items.map((item, index) => (
                     <div className="DynamicInputItem" key={index}>
-                        <button onClick={() => removeField(index)}>-</button>
+                        {readOnly ? <p>-</p> : <button onClick={() => removeField(index)}>-</button>  }
+                       
                         <input
                             value={item.name}
                             placeholder={`${placeholder} Name`}
                             onChange={(e) => handleInputChange(index, 'name', e.target.value)}
+                            readOnly={readOnly}
                         />
                         <input
                             value={item.unitQuantity}
                             placeholder={`${placeholder} Unit Quantity`}
                             onChange={(e) => handleInputChange(index, 'unitQuantity', e.target.value)}
-                        />
+                            readOnly={readOnly}
+                            />
                         <input
                             value={item.unit}
                             placeholder={`${placeholder} Unit`}
                             onChange={(e) => handleInputChange(index, 'unit', e.target.value)}
+                            readOnly={readOnly}
                         />
                     </div>
                     
@@ -52,13 +56,13 @@ function DynamicInput({ items, setItems, placeholder }) {
     );
 }
 
-function WorkSpecificationForm() {
+function WorkSpecificationForm({ initialSpec: propInitialSpec, mode: propMode, onClose }) {
     const navigate = useNavigate();
-    const location = useLocation();
-    const initialSpec = location.state ? location.state.selectedSpec : {};
-    const [mode, setMode] = useState(location.state ? "edit" : "add");
     const [isLoading, setIsLoading] = useState(false);
-    
+    const [readOnly, setReadOnly] = useState(false);
+    const [hideButtons, setHideButtons] = useState(false);
+    const [mode, setMode] = useState(propMode || 'add');  // Add this line
+  
     const defaultSpec = {
         code: '',
         description: '',
@@ -72,25 +76,30 @@ function WorkSpecificationForm() {
     
     const mergedSpec = {
         ...defaultSpec,
-        ...initialSpec,
-        manpower: initialSpec.manpower || defaultSpec.manpower,
-        materials: initialSpec.materials || defaultSpec.materials,
-        miscellaneous: initialSpec.miscellaneous || defaultSpec.miscellaneous
+        ...propInitialSpec,
+        manpower: propInitialSpec.manpower || defaultSpec.manpower,
+        materials: propInitialSpec.materials || defaultSpec.materials,
+        miscellaneous: propInitialSpec.miscellaneous || defaultSpec.miscellaneous
     };
-    
+
     const [inputs, setInputs] = useState(mergedSpec);
     
     // Using useRef to track the original code value
     const originalCodeRef = useRef(inputs.code);
-    
+
+    useEffect(() => {
+        setReadOnly(propMode === 'view');
+        setHideButtons(propMode === 'view');
+    }, [propMode]);
+
     useEffect(() => {
         if (inputs.code !== originalCodeRef.current) {
-            setMode('add');
+            setMode('add');  // Use setMode here
         } else {
-            setMode('edit');
+            setMode('edit');  // And here
         }
-    }, [inputs.code]);
-    
+    }, [inputs.code, originalCodeRef.current]);  // Add originalCodeRef.current as a dependency
+ 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setInputs((prevInputs) => ({
@@ -137,17 +146,16 @@ function WorkSpecificationForm() {
             const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/estimator/add_work_specification`;
             addOrUpdateWorkSpec(apiUrl, 'POST');
         }
+        if (onClose) onClose();
     };
 
     return (
         <div className="specification_form">
-            <h1>Work Specification Building</h1>
+            <h2>Work Specification Form </h2>
             <div className="specification_names">
                 <div className="specification_names_row">
                     <input value={inputs.code} name="code" onChange={handleInputChange} placeholder="Code" />
                     <input value={inputs.unit} name="unit" onChange={handleInputChange} placeholder="Unit" />
-                </div>
-                <div className="specification_names_row">
                     <input value={inputs.work_type} name="work_type" onChange={handleInputChange} placeholder="Work Type" />
                     <input value={inputs.labour_rate} name="labour_rate" onChange={handleInputChange} placeholder="Labour Rate" />
                 </div>
@@ -155,24 +163,21 @@ function WorkSpecificationForm() {
             </div>
 
             <div className="dynamicInputContainer">
-                <DynamicInput items={inputs.manpower} setItems={newItems => setInputs({ ...inputs, manpower: newItems })} placeholder="Manpower" />
-                <DynamicInput items={inputs.materials} setItems={newItems => setInputs({ ...inputs, materials: newItems })} placeholder="Materials" />
-                <DynamicInput items={inputs.miscellaneous} setItems={newItems => setInputs({ ...inputs, miscellaneous: newItems })} placeholder="Miscellaneous" />
+                <DynamicInput items={inputs.manpower} setItems={newItems => setInputs({ ...inputs, manpower: newItems })} placeholder="Manpower" readOnly={readOnly} />
+                <DynamicInput items={inputs.materials} setItems={newItems => setInputs({ ...inputs, materials: newItems })} placeholder="Materials" readOnly={readOnly} />
+                <DynamicInput items={inputs.miscellaneous} setItems={newItems => setInputs({ ...inputs, miscellaneous: newItems })} placeholder="Miscellaneous" readOnly={readOnly} />
             </div>
 
-            <div className="submit_zone">
-                <button 
-                    className="submit_button green" 
-                    onClick={handleSubmit}>
-                    {/* Compare the original code value with the current code input value */}
-                    {inputs.code !== originalCodeRef.current ? "ADD SPECIFICATION" : "SAVE CHANGES"}
-                </button>
-                <button 
-                    className="submit_button blue" 
-                    onClick={() => navigate('/specification_list')}>
-                    SPECIFICATION LIST PAGE
-                </button>
-            </div>
+            {!hideButtons && (
+                <div className="submit_zone">
+                    <button className="submit_button green" onClick={handleSubmit}>
+                        {inputs.code !== originalCodeRef.current ? "ADD SPECIFICATION" : "SAVE CHANGES"}
+                    </button>
+                    <button className="submit_button blue" onClick={() => navigate('/specification_list')}>
+                        SPECIFICATION LIST PAGE
+                    </button>
+                </div>
+            )}
 
             {isLoading && (
                 <div className="loading-modal">

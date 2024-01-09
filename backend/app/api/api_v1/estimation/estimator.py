@@ -182,52 +182,124 @@ async def get_codes_and_descriptions():
 
 
 
+# @router.post("/calculate_mat")
+# async def calculate_materials(input_data: List[InputData]):
+#     total_materials = defaultdict(list)
+#     total_manpower = defaultdict(list)
+#     total_miscellaneous = defaultdict(list)
+    
+#     for entry in input_data:
+#         code = entry.code
+#         quantity = entry.quantity
+        
+#         # Retrieve the work specification for the code
+#         work_spec = await specification_collection.find_one({"code": code})
+#         if not work_spec:
+#             raise HTTPException(status_code=404, detail=f"Work Specification for code {code} not found")
+        
+#         # def aggregate_items(target, items):
+#         #     for item in items:
+#         #         found = False
+#         #         for existing in target[item['name']]:
+#         #             if existing['unitQuantity'] == item['unitQuantity']:
+#         #                 existing['quantity'] += float(item['unit']) * quantity
+#         #                 found = True
+#         #                 break
+#         #         if not found:
+#         #             target[item['name']].append({
+#         #                 'quantity': float(item['unit']) * quantity,
+#         #                 'unitQuantity': item['unitQuantity']
+#         #             })
+
+#         def aggregate_items(target, items, remarks,code):
+#             for item in items:
+#                 name = item['name']
+#                 unit_quantity = item['unitQuantity']
+#                 contributed_quantity = float(item['unit']) * quantity
+
+#                 # Create a detail string for this contribution
+#                 detail_str = f"{remarks}-{contributed_quantity}--{code}"
+
+#                 # Check if the item with the same unitQuantity already exists
+#                 existing = next((e for e in target[name] if e['unitQuantity'] == unit_quantity), None)
+
+#                 if existing:
+#                     existing['quantity'] += contributed_quantity
+#                     existing['details'] += f", {detail_str}"  # Append new detail to the string
+#                 else:
+#                     target[name].append({
+#                         'quantity': contributed_quantity,
+#                         'unitQuantity': unit_quantity,
+#                         'details': detail_str  # Start a new detail string
+#                     })
+
+
+#         # Calculate materials for this code and aggregate
+#         # aggregate_items(total_materials, work_spec.get('materials') or [])
+#         # aggregate_items(total_manpower, work_spec.get('manpower') or [])
+#         # aggregate_items(total_miscellaneous, work_spec.get('miscellaneous') or [])
+#         remarks = entry.remarks  # Assuming this is how you get the remarks from input_data
+#         aggregate_items(total_materials, work_spec.get('materials') or [], remarks,code)
+#         aggregate_items(total_manpower, work_spec.get('manpower') or [], remarks,code)
+#         aggregate_items(total_miscellaneous, work_spec.get('miscellaneous') or [], remarks,code)
+
+            
+#     # Convert defaultdicts to dicts for JSON serialization
+#     return {
+#         "materials": dict(total_materials),
+#         "manpower": dict(total_manpower),
+#         "miscellaneous": dict(total_miscellaneous)
+#     }
+
+
 @router.post("/calculate_mat")
 async def calculate_materials(input_data: List[InputData]):
-    total_materials = defaultdict(list)
-    total_manpower = defaultdict(list)
-    total_miscellaneous = defaultdict(list)
+    total_materials = defaultdict(lambda: {'quantity': 0, 'unitQuantity': '', 'details': defaultdict(lambda: defaultdict(float))})
+    total_manpower = defaultdict(lambda: {'quantity': 0, 'unitQuantity': '', 'details': defaultdict(lambda: defaultdict(float))})
+    total_miscellaneous = defaultdict(lambda: {'quantity': 0, 'unitQuantity': '', 'details': defaultdict(lambda: defaultdict(float))})
     
+    def aggregate_items(target, items, remarks, code):
+        for item in items:
+            name = item['name']
+            unit_quantity = item['unitQuantity']
+            contributed_quantity = float(item['unit']) * quantity
+
+            target[name]['quantity'] += contributed_quantity
+            target[name]['unitQuantity'] = unit_quantity  # Assuming unit quantity is consistent for each name
+            target[name]['details'][remarks][code] += contributed_quantity
+
+    def process_details(details_dict):
+        return ', '.join([
+            f"{remark.upper()} ({', '.join([f'{code} -- {quantity:.2f}' for code, quantity in codes.items()])})"
+            for remark, codes in details_dict.items()
+        ])
+
     for entry in input_data:
         code = entry.code
         quantity = entry.quantity
         
-        # Retrieve the work specification for the code
         work_spec = await specification_collection.find_one({"code": code})
         if not work_spec:
             raise HTTPException(status_code=404, detail=f"Work Specification for code {code} not found")
-        
-        # if not isinstance(work_spec.get('materials'), list) or \
-        # not isinstance(work_spec.get('manpower'), list) or \
-        # not isinstance(work_spec.get('miscellaneous'), list):
-        #     raise HTTPException(status_code=400, detail=f"Invalid data format in Work Specification for code {code}")
 
+        remarks = entry.remarks
+        aggregate_items(total_materials, work_spec.get('materials') or [], remarks, code)
+        aggregate_items(total_manpower, work_spec.get('manpower') or [], remarks, code)
+        aggregate_items(total_miscellaneous, work_spec.get('miscellaneous') or [], remarks, code)
 
-        def aggregate_items(target, items):
-            for item in items:
-                found = False
-                for existing in target[item['name']]:
-                    if existing['unitQuantity'] == item['unitQuantity']:
-                        existing['quantity'] += float(item['unit']) * quantity
-                        found = True
-                        break
-                if not found:
-                    target[item['name']].append({
-                        'quantity': float(item['unit']) * quantity,
-                        'unitQuantity': item['unitQuantity']
-                    })
+    # Process and format details
+    for name, data in total_materials.items():
+        total_materials[name]['details'] = process_details(data['details'])
+    for name, data in total_manpower.items():
+        total_manpower[name]['details'] = process_details(data['details'])
+    for name, data in total_miscellaneous.items():
+        total_miscellaneous[name]['details'] = process_details(data['details'])
 
-        # Calculate materials for this code and aggregate
-        aggregate_items(total_materials, work_spec.get('materials') or [])
-        aggregate_items(total_manpower, work_spec.get('manpower') or [])
-        aggregate_items(total_miscellaneous, work_spec.get('miscellaneous') or [])
-
-            
-    # Convert defaultdicts to dicts for JSON serialization
+    # Convert defaultdicts to regular dicts for JSON serialization
     return {
-        "materials": dict(total_materials),
-        "manpower": dict(total_manpower),
-        "miscellaneous": dict(total_miscellaneous)
+        "materials": {k: v for k, v in total_materials.items()},
+        "manpower": {k: v for k, v in total_manpower.items()},
+        "miscellaneous": {k: v for k, v in total_miscellaneous.items()}
     }
 
 

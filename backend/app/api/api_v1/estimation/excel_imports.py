@@ -49,44 +49,40 @@ def find_most_similar_codes(input_descriptions, codes):
 
 
 def parse_csv_data(df, project_id, codes_dw):
-    # Fetch specifications from the specification list
-    specifications = [spec for spec in codes_dw]  # codes is imported from specification_list.py
+    specifications = [spec for spec in codes_dw]
 
-    # Parse and preprocess each row in the DataFrame
     parsed_data = []
     for index, row in df.iterrows():
-        # Skip rows with fewer than 3 columns or with no quantity value
         if len(row) < 3 or pd.isnull(row[2]):
             continue
 
-        # description = preprocess_text(row[0]) 
-        description = row[0] 
-        
+        description = row[0]
         unit_value = row[1].strip() if len(row) > 1 else None
-        
-        # Try to convert quantity to float, skip the row if it fails
-        try:
-            quantity = float(row[2].strip())
-        except ValueError:
-            continue  # Skip this row as the quantity is not a float
+        remarks = row[3] if len(row) > 3 else ""
 
-        # Find the most similar code for the description
+        # Handle quantity whether it's a float or a string
+        try:
+            quantity = float(row[2])
+            if quantity == 0:  # Skip rows with quantity 0
+                continue
+        except (ValueError, TypeError):
+            continue  # Skip row if quantity is not a number
+
         most_similar_code = find_most_similar_codes([description], specifications)[0]
         work_type = next((item['work_type'] for item in specifications if item['code'] == most_similar_code), None)
         unit = next((item['unit'] for item in specifications if item['code'] == most_similar_code), None)
-        # Create a work item dictionary
+
         work_item = {
-            'details': description +  unit_value,
+            'details': description + unit_value,
             'unit': unit,
             'quantity': quantity,
             'work_code': most_similar_code,
             'work_type': work_type,
             'project_id': project_id,
-            'remarks': "",
-            # 'user_id': current_user.username
+            'remarks': remarks
         }
         parsed_data.append(work_item)
 
-
     return parsed_data
+
 

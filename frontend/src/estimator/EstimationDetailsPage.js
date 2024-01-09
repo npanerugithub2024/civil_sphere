@@ -214,6 +214,24 @@ const WorkDetailsPage = () => {
         });
     });
 
+    const [selectedRemark, setSelectedRemark] = useState('');
+
+    const getUniqueRemarks = (workItems) => {
+        const uniqueRemarks = new Set();
+        workItems.forEach(item => {
+            if (item.remarks) {
+                uniqueRemarks.add(item.remarks);
+            }
+        });
+        return Array.from(uniqueRemarks);
+    }
+    
+    const filterByRemark = () => {
+        if (!selectedRemark) return filteredWorkItems; // No filter applied
+        return filteredWorkItems.filter(item => item.remarks === selectedRemark);
+    }
+    
+
 
     return(
     <div className="work-details-page">
@@ -234,6 +252,7 @@ const WorkDetailsPage = () => {
             {/* <p>Project ID: {params.projectId}</p> */}
             <h2>{selectedWorkType || "Show All"}</h2>
             
+
             <div className="table-container">
             <table>
                 <thead>
@@ -244,7 +263,12 @@ const WorkDetailsPage = () => {
                         <th class="quantity-col">Quantity</th>
                         <th class="unit-col">Unit</th>
                         <th>Details</th>
-                        <th>Remarks</th>
+                        <th><select value={selectedRemark} onChange={(e) => setSelectedRemark(e.target.value)}>
+                <option value="">All Locations</option>
+                {getUniqueRemarks(filteredWorkItems).map(remark => (
+                    <option key={remark} value={remark}>{remark}</option>
+                ))}
+            </select></th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -276,7 +300,7 @@ const WorkDetailsPage = () => {
         </tr>
     )}
                         {/* Existing items */}
-                        {filteredWorkItems.map((item, index) => (
+                        {filterByRemark().map((item, index) => (
                             <tr key={item.id}>
                                 <td>{index + 1}</td>
                                 <td>{item.work_code}</td>
@@ -298,7 +322,7 @@ const WorkDetailsPage = () => {
             </div>   
             
             <p></p>
-            <button onClick={() => calculate_materials(filteredWorkItems, setCalculationResults, setShowResults)}>Calculate Materials</button>     
+            <button onClick={() => calculate_materials(filterByRemark(), setCalculationResults, setShowResults)}>Calculate Materials</button>     
             {showResults && <Mat_Table data={calculationResults} />}  {/* Conditionally render the ResultsTable */}
             {showResults && <button onClick={() => exportToExcel(filteredWorkItems, calculationResults)}>Export to Excel</button>}
         </main>
@@ -342,52 +366,52 @@ export const calculate_materials = async (rows, setCalculationResults, setShowRe
   };
   
 
-  function exportToExcel(rows, calculationResults) {
+function exportToExcel(rows, calculationResults) {
     // Create a new workbook
     const wb = XLSX.utils.book_new();
-  
+
     // Convert BOQ rows to the format suitable for Excel
     const boqData = rows.map((row, index) => ({
         'S.N.': index + 1,
         'Code': row.work_code,
         'Work Type': row.work_type,
-        'Unit' : row.unit,
+        'Unit': row.unit,
         'Quantity': row.quantity,
         'Remarks': row.remarks,
         'Details': row.details
     }));
-  
+
     // Convert Mat_Table data to the format suitable for Excel
     const matTableData = [];
-  
+
     let serialNumber = 1;
     for (let category in calculationResults) {
         const categoryData = calculationResults[category];
         for (let name in categoryData) {
-            categoryData[name].forEach(value => {
-                matTableData.push({
-                    'S.N.': serialNumber++,
-                    'Type': capitalizeFirstLetter(category),
-                    'Name': name,
-                    'Quantity': value.quantity,
-                    'Unit Quantity': value.unitQuantity
-                });
+            const value = categoryData[name];
+            matTableData.push({
+                'S.N.': serialNumber++,
+                'Type': capitalizeFirstLetter(category),
+                'Name': name,
+                'Quantity': value.quantity,
+                'Unit Quantity': value.unitQuantity,
+                'Details': value.details // Assuming details is a string
             });
         }
     }
-  
+
     // Convert data to Excel worksheet
     const ws1 = XLSX.utils.json_to_sheet(boqData);
     const ws2 = XLSX.utils.json_to_sheet(matTableData);
-  
+
     // Add the worksheet to the workbook
     XLSX.utils.book_append_sheet(wb, ws1, "BOQ");
     XLSX.utils.book_append_sheet(wb, ws2, "Mat_Table");
-  
+
     // Save the workbook
     XLSX.writeFile(wb, "exported_data.xlsx");
-  }
+}
 
-  function capitalizeFirstLetter(string) {
+function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+}

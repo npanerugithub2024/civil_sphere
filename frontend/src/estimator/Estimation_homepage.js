@@ -220,14 +220,14 @@ function EstimationPage() {
 
                     <button className="submit_button blue" type="submit" onClick={createProject}>Add New Project</button>
                     </div>
-                    <div >
-                    <input 
-                        type="file" 
-                        onChange={handleFileUpload}
-                        accept=".csv"
-                        
-                    />
-                    <span style={{ marginLeft: '10px' }}>Select a csv file </span>
+                    <div>
+                        <input 
+                            type="file" 
+                            onChange={handleFileUpload}
+                            accept=".csv"
+                            title="CSV format: 1st column - Specification, 2nd column - Unit, 3rd column - Quantity, 4th column - Remarks"
+                        />
+                        <span style={{ marginLeft: '10px' }}>Select a csv file</span>
                     </div>
 
                    

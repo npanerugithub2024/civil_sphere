@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, HTTPException, Depends, status, APIRouter  
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -7,6 +6,7 @@ from typing import Optional
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from email_validator import validate_email, EmailNotValidError
+from typing import List
 
 
 app = FastAPI()
@@ -137,3 +137,10 @@ async def validate_token(current_user: User = Depends(get_current_user)):
     If the token is valid, returns the current user's data.
     """
     return current_user
+
+
+
+@router.get("/users/", response_model=List[User])
+async def read_all_users():
+    users = await collection.find().to_list(length=100)  # You can set a limit for the number of users
+    return users

@@ -4,7 +4,7 @@ const WallVisualizer = ({ wallData }) => {
   const { footlength_a, stemheight_H, wallthick_b, heellength_e, footingdepth_Hf } = wallData;
 
   const startX = 400;
-  const startY = 300;
+  const startY = 500;
 
   const pathD = `
     M ${startX} ${startY}

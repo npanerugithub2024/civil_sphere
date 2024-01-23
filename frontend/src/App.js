@@ -15,6 +15,7 @@ import Signup from './user/Signup';
 import PrivateRoute from './user/PrivateRoute';
 import { AuthProvider } from './user/AuthContext';
 import './App.css';
+import CantileverWallCalculator from './wallDesign/Walldesign_homepage';
 
 const App = () => {
     return (
@@ -29,6 +30,7 @@ const App = () => {
                             <Route path="/signup" element={<Signup />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/contactus" element={<ContactUs />} />
+                            <Route path="/walldesign" element={<CantileverWallCalculator />} />
 
                             {/* Wrap the component with PrivateRoute within the element prop */}
                             <Route path="/estimationpage" element={

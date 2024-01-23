@@ -24,6 +24,7 @@ const Navbar = () => {
             <div className="nav-links">
                 <Link to="/">Home</Link>
                 <Link to="/estimationpage">Estimate</Link>
+                <Link to="/walldesign">Our Programs</Link>
                 <Link to="/contactus">Contact Us</Link>
                 <Link to="/about">About</Link>
                 

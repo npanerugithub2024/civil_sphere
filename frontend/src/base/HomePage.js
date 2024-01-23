@@ -4,7 +4,7 @@ const HomePage = () => {
     return (
         <div className="main-content">
             <h1>Welcome to Civil Sphere</h1>
-            <p>Construction simplified.</p>
+            <p>Design simplified.</p>
             {/* Additional content can go here */}
         </div>
     );

@@ -1,0 +1,62 @@
+/* Walldesign.css */
+
+.wall-form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* Example background color */
+  border-radius: 8px; /* Example border radius */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example box shadow for some depth */
+}
+
+.form-group {
+  display: flex; /* Use flexbox to align label and input */
+  align-items: center; /* Align items vertically */
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  flex: 0 0 200px; /* Give the label a fixed width */
+  margin-right: 10px; /* Add some space between the label and the input */
+  text-align: right; /* Right-align the text of the label */
+}
+
+.form-group input {
+  flex: 1; /* Allow the input to take up the remaining space */
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+/* Add some styles to your submit button for better appearance */
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-group label {
+    flex: none; /* Do not allow the label to grow */
+    margin-bottom: 5px; /* Add some space between the label and the input */
+    text-align: left; /* Left-align the text of the label */
+  }
+
+  .form-group input {
+    width: 100%; /* Make the input take the full width */
+  }
+}

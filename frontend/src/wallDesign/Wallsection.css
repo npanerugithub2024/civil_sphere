@@ -1,0 +1,15 @@
+/* WallDesign.css */
+
+.wall-visual {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #656565; /* Wall color */
+    color: white; /* Text color for any labels or dimensions */
+    border: 2px solid #404040; /* Border to highlight the wall */
+  }
+  
+  input {
+    margin: 10px;
+    padding: 5px;
+  }
+  

@@ -1,5 +1,3 @@
-fastapi[all]
-uvicorn
 pymongo
 pydantic
 motor

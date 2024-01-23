@@ -8,7 +8,7 @@ const About = () => {
 
     return (
         <div className="main-content">
-            <h2>Construction simplified.</h2>
+            <h2>Design simplified.</h2>
             <p>Nishan Thapa</p>
             <p><a href="mailto:nishan.idea23@gmail.com">nishan.idea23@gmail.com</a></p>
             <button  onClick={handleClick}>THANK YOU.</button>

@@ -27,6 +27,7 @@ const Navbar = () => {
                 <Link to="/walldesign">Our Programs</Link>
                 <Link to="/contactus">Contact Us</Link>
                 <Link to="/about">About</Link>
+                <Link to="/wall_design_rough">Rough Page</Link>
                 
                 
             </div>

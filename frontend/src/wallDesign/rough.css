@@ -1,0 +1,64 @@
+/* rough.css */
+.wall-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.wall-form-container {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: flex-start;
+  width: 100%;
+  min-width: 1000px;
+  
+}
+
+.inputs-container{
+  min-width: 200px;
+  border: solid 1px red;
+  border-radius: 10px;
+  padding: 10px;
+
+}
+
+
+
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  flex-shrink: 0;
+  /* margin-right: px; */
+  white-space: overflow;
+  max-width: 150px;
+  /* border: solid 1px red; */
+}
+
+input[type="number"] {
+  width:60px;
+  min-height: 5px;
+  margin-right: 1em;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  /* border: solid 1px red; */
+
+}
+
+
+
+.input-unit {
+  margin-left: 0.5rem;
+}
+
+/* Column Width Control */
+.unfactoredLoadTable th:nth-of-type(1) { width: 20%; } /* Work Code */
+.unfactoredLoadTable th:nth-of-type(2) { width: 5%; } /* Work Code */
+.unfactoredLoadTable th:nth-of-type(3) { width: 5%; } /* Work Type */
+.unfactoredLoadTable th:nth-of-type(4) { width: 5%; } /* Quantity */

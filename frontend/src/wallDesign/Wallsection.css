@@ -1,15 +1,20 @@
-/* WallDesign.css */
+/* Styles for the SVG container */
+.wall-visualizer-svg {
+  display: block; /* Ensures the SVG is block-level for better control */
+  margin: 0 auto; /* Centers the SVG horizontally */
+  max-width: 100%; /* Responsive width */
+  height: auto; /* Maintain aspect ratio */
+  background-color: #c4dc8160; /* Light background for visibility */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Spacing around the SVG content */
+}
 
-.wall-visual {
-    display: inline-block;
-    margin-top: 20px;
-    background-color: #656565; /* Wall color */
-    color: white; /* Text color for any labels or dimensions */
-    border: 2px solid #404040; /* Border to highlight the wall */
-  }
-  
-  input {
-    margin: 10px;
-    padding: 5px;
-  }
-  
+/* Style for the wall path */
+.wall-visualizer-svg path {
+  fill: #b8b8b8; /* Concrete-like color for the wall */
+  stroke: #808080; /* Slightly darker stroke to outline the wall */
+  stroke-width: 2; /* Thickness of the wall outline for visibility */
+}
+
+

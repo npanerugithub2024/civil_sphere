@@ -17,9 +17,9 @@ router = APIRouter()
 
 class Wall(BaseModel):
     name: Optional[str]
-    footlength_a: float
+    toelength_a: float
     wallthick_b: float
-    heellength_e: float
+    heellength_c: float
     stemheight_H: float
     footingdepth_Hf: float
     lengthoffooting_Lf: float
@@ -40,6 +40,6 @@ class Wall(BaseModel):
 async def wall_weight(data: Wall):
     print(data, "is the printed data")  # Log the received data
     weight1 = data.keydepth * data.keywidth * data.lengthoffooting_Lf
-    weight2 = data.keydepth * data.keywidth * data.lengthoffooting_Lf
-    weight3 = data.keydepth * data.keywidth * data.lengthoffooting_Lf
+    weight2 = data.stemheight_H * data.wallthick_b * data.lengthoffooting_Lf
+    weight3 = data.heellength_c * data.footingdepth_Hf * data.lengthoffooting_Lf
     return {"weight1": weight1, "weight2":weight2, "weight3":weight3}

@@ -9,24 +9,25 @@ import axios from 'axios';
 
 const CantileverWallCalculator = () => {
   const [wallData, setWallData] = useState({
-    name: '',
-    footlength_a: 0,
-    wallthick_b: 0,
-    heellength_e: 0,
-    stemheight_H: 0,
-    footingdepth_Hf: 0,
-    lengthoffooting_Lf: 0,
-    concreteunitweight: 0,
+    //all of these below are initial values or default values
+    name: 'Cantilever Wall Design', 
+    toelength_a: 2,
+    wallthick_b: 1,
+    heellength_c: 4,
+    stemheight_H: 9,
+    footingdepth_Hf: 1.5,
+    lengthoffooting_Lf: 1,
+    concreteunitweight: 0.150,
     keydistancefromrotatingpoint: 0,
-    keydepth: 0,
-    keywidth: 0,
-    soilunitweight: 0,
-    frictionangle: 0,
-    factoredbearingresistanceinstrength: 0,
-    factoredbearingresistanceinservice: 0,
-    coefficientoffriction_f: 0,
-    resistancefactorforsliding: 0,
-    heq: 0
+    keydepth: 1,
+    keywidth: 1,
+    soilunitweight: 0.125,
+    frictionangle: 30,
+    factoredbearingresistanceinstrength: 3,
+    factoredbearingresistanceinservice: 2,
+    coefficientoffriction_f: 0.45,
+    resistancefactorforsliding: 0.8,
+    heq: 2
   });
 
   const handleChange = (e) => {
@@ -40,9 +41,9 @@ const CantileverWallCalculator = () => {
     // Prepare the payload with the wall data state
     const payload = {
       name: wallData.name,
-      footlength_a: parseFloat(wallData.footlength_a),
+      toelength_a: parseFloat(wallData.toelength_a),
       wallthick_b: parseFloat(wallData.wallthick_b),
-      heellength_e: parseFloat(wallData.heellength_e),
+      heellength_c: parseFloat(wallData.heellength_c),
       stemheight_H: parseFloat(wallData.stemheight_H),
       footingdepth_Hf: parseFloat(wallData.footingdepth_Hf),
       lengthoffooting_Lf: parseFloat(wallData.lengthoffooting_Lf),
@@ -64,23 +65,61 @@ const CantileverWallCalculator = () => {
       const response = await axios.post('http://localhost:8000/api/wall-data', payload);
       // Assuming the server responds with the volume in the response data
       //setVolume(response.data.volume);
-      alert('Volume calculated successfully!');
+      alert('Calculated successfully!');
     } catch (error) {
       console.error('Error submitting wall data:', error);
-      alert('Failed to calculate volume. Please try again.');
+      alert('Failed to calculate. Please try again.');
     }
   };
   
 
   const createLabel = (fieldName) => {
-    const splitWords = fieldName.replace('_', ' ').split(' ');
-    return splitWords.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    switch (fieldName) {
+      case 'toelength_a':
+        return 'Toe length (a), ft';
+      case 'wallthick_b':
+        return 'Wall Thickness (b), ft';
+      case 'heellength_c':
+        return 'Heel Length (e), ft';
+      case 'stemheight_H':
+        return 'Stem Height (H), ft';  
+      case 'footingdepth_Hf':
+        return 'Footing Depth (Hf), ft';  
+      case 'lengthoffooting_Lf':
+        return 'Length of Footing (Lf), ft';  
+      case 'concreteunitweight':
+        return 'Concrete Unit Weight, kcf';  
+      case 'keydistancefromrotatingpoint':
+        return 'Key distance from rotating point, ft';  
+      case 'keydepth':
+        return 'Key Depth, ft';  
+      case 'keywidth':
+        return 'Key Width, ft';  
+      case 'soilunitweight':
+        return 'Soil unit weight, kcf';
+      case 'frictionangle':
+        return 'Friction angle, degrees';
+      case 'factoredbearingresistanceinstrength':
+        return 'Factored bearing resistance in Strength, ksf';
+      case 'factoredbearingresistanceinservice':
+        return 'Factored bearing resistance in Service, ksf';
+      case 'coefficientoffriction_f':
+        return 'Coefficient of friction';
+      case 'resistancefactorforsliding':
+        return 'Resistance factor for sliding';
+
+      default:
+        const splitWords = fieldName.replace('_', ' ').split(' ');
+        return splitWords.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
   };
 
+  
+ 
   return (
     <div className="wall-form-container">
       <WallVisualizer wallData={wallData} />
-      {/* <h2>Wall Specifications</h2> */}
+      <h2>Wall Specifications</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -90,11 +129,12 @@ const CantileverWallCalculator = () => {
             name="name"
             value={wallData.name}
             onChange={handleChange}
+            min="0" //prevent values less than 0
           />
         </div>
         <h3>Dimensions</h3>
         <div className="dimensions-group">
-          {['footlength_a', 'wallthick_b', 'heellength_e', 'stemheight_H', 'footingdepth_Hf', 'lengthoffooting_Lf'].map(field => (
+          {['toelength_a', 'wallthick_b', 'heellength_c', 'stemheight_H', 'footingdepth_Hf', 'lengthoffooting_Lf'].map(field => (
             <div key={field} className="form-group">
               <label htmlFor={field}>{createLabel(field)}</label>
               <input
@@ -103,6 +143,7 @@ const CantileverWallCalculator = () => {
                 name={field}
                 value={wallData[field]}
                 onChange={handleChange}
+                min="0" //prevent values less than 0
               />
             </div>
           ))}
@@ -119,6 +160,7 @@ const CantileverWallCalculator = () => {
                 name={field}
                 value={wallData[field]}
                 onChange={handleChange}
+                min="0" //prevent values less than 0
               />
             </div>
           ))}
@@ -139,6 +181,7 @@ const CantileverWallCalculator = () => {
                 name={field}
                 value={wallData[field]}
                 onChange={handleChange}
+                min="0" //prevent values less than 0
               />
             </div>
           ))}
@@ -146,6 +189,12 @@ const CantileverWallCalculator = () => {
         
         <button type="submit">Submit Wall Data</button>
       </form>
+      <p>Wall Load Calcs</p>
+
+     
+
+
+
     </div>
   );
 };

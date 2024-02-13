@@ -4,23 +4,45 @@ import './rough.css';
 
 const WeightCalculatorForm = () => {
   const [values, setValues] = useState({
-    depthOfFooting: 0,
+    footLengthA : 10,
+    wallThickB : 2,
+    footingDepthHf: 2,
     lengthOfToe: 10,
-    lengthOfHeel: 10,
-    heightOfStem: 10,
+    heelLengthE: 10,
+    stemHeightH: 10,
     depthOfStem: 10,
+    keyDistanceFromRotatingPoint: 10,
+    keyDepth :10,
+    keyWidth:10, 
     soilUnitWeight: 20,
-    concreteUnitWeight: 25
+    concreteUnitWeight: 25,
+    frictionAngle :20,
+    factoredBearingResistanceInStrength:10,
+    factoredBearingResitanceInService:2,
+    coefficientOfFrictionF: 0,
+    resistanceFactorForSliding: 0,
+    heq: 0
   });
 
   const inputUnits = {
-    depthOfFooting: 'ft',
+    footLengthA : 'ft',
+    wallThickB : 'ft',
+    footingDepthHf: 'ft',
     lengthOfToe: 'ft',
-    lengthOfHeel: 'ft',
-    heightOfStem: 'ft',
+    heelLengthE: 'ft',
+    stemHeightH: 'ft',
     depthOfStem: 'ft',
-    soilUnitWeight: 'pcf',
-    concreteUnitWeight: 'pcf'
+    keyDistanceFromRotatingPoint: 'ft',
+    keyDepth :'ft',
+    keyWidth:'ft', 
+    soilUnitWeight: 'kcf',
+    concreteUnitWeight: 'kcf',
+    frictionAngle :'deg',
+    factoredBearingResistanceInStrength:'ksf',
+    factoredBearingResitanceInService: 'ksf',
+    coefficientOfFrictionF: '',
+    resistanceFactorForSliding: '',
+    heq: 'ft'
   };
 
   const handleInputChange = (e) => {
@@ -69,11 +91,11 @@ export default WeightCalculatorForm;
 // Separated Table Component (Should be in its own file ideally)
 const WeightDisplayTable = ({ values }) => {
     const calculateWeights = () => {
-        const footingWeight = values.depthOfFooting * (values.lengthOfToe + values.lengthOfHeel) * values.concreteUnitWeight;
-        const stemWeight = values.depthOfStem * values.heightOfStem * values.concreteUnitWeight;
+        const footingWeight = values.footingDepthHf * (values.lengthOfToe + values.heelLengthE) * values.concreteUnitWeight;
+        const stemWeight = values.depthOfStem * values.stemHeightH * values.concreteUnitWeight;
         const totalWeight = footingWeight + stemWeight;
         const z1 = values.depthOfStem/2
-        const z2 = ( values.lengthOfHeel +values.lengthOfHeel) * 0.5
+        const z2 = ( values.heelLengthE +values.heelLengthE) * 0.5
         const cg_z = (z1*footingWeight   + z2*stemWeight) /totalWeight
         return { footingWeight, stemWeight, totalWeight,z1,z2,cg_z };
       };   
@@ -120,11 +142,11 @@ const WeightDisplayTable = ({ values }) => {
     // Separated Table Component (Should be in its own file ideally)
 const UnfactoredLoadTable = ({ values }) => {
     const calculateWeights = () => {
-        const footingWeight = values.depthOfFooting * (values.lengthOfToe + values.lengthOfHeel) * values.concreteUnitWeight;
-        const stemWeight = values.depthOfStem * values.heightOfStem * values.concreteUnitWeight;
+        const footingWeight = values.footingDepthHf * (values.lengthOfToe + values.heelLengthE) * values.concreteUnitWeight;
+        const stemWeight = values.depthOfStem * values.stemHeightH * values.concreteUnitWeight;
         const totalWeight = footingWeight + stemWeight;
         const z1 = values.depthOfStem/2
-        const z2 = ( values.lengthOfHeel +values.lengthOfHeel) * 0.5
+        const z2 = ( values.heelLengthE +values.heelLengthE) * 0.5
         const cg_z = (z1*footingWeight   + z2*stemWeight) /totalWeight
         return { footingWeight, stemWeight, totalWeight,z1,z2,cg_z };
       };   
@@ -168,9 +190,17 @@ const UnfactoredLoadTable = ({ values }) => {
                 <td>kips</td>
                 <td>{z2.toFixed(2)}</td>
               </tr>
+              <tr>
+                <td>Passive Earth Pressure, EHp:</td>
+                <td>{totalWeight.toFixed(2)}</td>
+                <td>kips</td>
+                <td>{z2.toFixed(2)}</td>
+              </tr>
             </tbody>
           </table>
         </div>
       );
     };
+
+
 

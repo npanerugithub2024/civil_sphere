@@ -80,7 +80,7 @@ const CantileverWallCalculator = () => {
   return (
     <div className="wall-form-container">
       <WallVisualizer wallData={wallData} />
-      <h2>Wall Specifications</h2>
+      {/* <h2>Wall Specifications</h2> */}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>

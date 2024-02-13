@@ -30,7 +30,7 @@ const App = () => {
                             <Route path="/signup" element={<Signup />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/contactus" element={<ContactUs />} />
-                            <Route path="/walldesign" element={<CantileverWallCalculator />} />
+                            <Route path="/wall_design" element={<CantileverWallCalculator />} />
                             <Route path="/wall_design_rough" element={<WeightCalculatorForm />} />
                             {/* Wrap the component with PrivateRoute within the element prop */}
                             <Route path="/estimationpage" element={

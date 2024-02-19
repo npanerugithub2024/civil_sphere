@@ -16,7 +16,7 @@ import PrivateRoute from './user/PrivateRoute';
 import { AuthProvider } from './user/AuthContext';
 import './App.css';
 import CantileverWallCalculator from './wallDesign/Walldesign_homepage';
-import WeightCalculatorForm from './wallDesign/rough';
+import WeightCalculatorForm from './wallDesign/Rough';
 const App = () => {
     return (
         <AuthProvider>

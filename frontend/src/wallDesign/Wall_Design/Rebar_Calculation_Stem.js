@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Rebar_Calculation = ({ wallData,thicknessOfWall, factoredMoment, factoredShear,serviceFactoredMoment }) => {
+const Rebar_Calculation_Stem = ({ wallData,thicknessOfWall, factoredMoment, factoredShear,serviceFactoredMoment }) => {
 
   // State for inputs
   const [rebarDiameterMain, setrebarDiameterMain] = useState(0.75);
@@ -414,4 +414,4 @@ const Rebar_Calculation = ({ wallData,thicknessOfWall, factoredMoment, factoredS
   );
 };
 
-export default Rebar_Calculation;
+export default Rebar_Calculation_Stem;

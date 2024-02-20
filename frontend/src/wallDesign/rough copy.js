@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Walldesign.css';
 import WallVisualizer from './Wallsection.js';
 // src/components/CantileverWallCalculator.js
-import Flexural_Reinforcement_For_Stem from './Wall_Design/Stem_Reinforcement.js';
+import Flexural_Reinforcement_For_Stem from './Wall_Design/Stem_Design.js';
 
 
 // import React, { useState } from 'react';

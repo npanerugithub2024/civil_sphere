@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Rebar_Calculation from './Rebar_Calculation';
+import Rebar_Calculation_Stem from './Rebar_Calculation_Stem';
 
 const Factored_Loads_Stem = ({wallData, loadFactor}) => {
     const ka = 0.3
@@ -61,7 +61,7 @@ const Stem_Load_Combination_Table = ({wallData, loadFactor,tableHeading}) => {
 
 
 // TABLE FOR   
-const Flexural_Reinforcement_For_Stem = ({ wallData }) => {
+const Stem_Design = ({ wallData }) => {
     // const {horizontalEarthPressure_EH, horizontalEarthPressure_EH_z, LS, LS_z, totalFactored_W, totalFactored_M} = Factored_Loads_Stem ({wallData, loadFactor})
     const serviceLoad = Factored_Loads_Stem({wallData, loadFactor : {EH_f: 1, LS_f: 1} });
     const strengthLoad = Factored_Loads_Stem({wallData, loadFactor : { EH_f: 1.5, LS_f: 1.75} });
@@ -99,7 +99,7 @@ const Flexural_Reinforcement_For_Stem = ({ wallData }) => {
           <p> Design SHEAR for full height stem  = {largerTotalFactored_W.toFixed(2)}  <i>kips</i></p>
 
 
-          <Rebar_Calculation
+          <Rebar_Calculation_Stem
             wallData = {wallData}
             thicknessOfWall={wallData.wallthick_b}
             factoredMoment={largerTotalFactored_M}
@@ -116,6 +116,6 @@ const Flexural_Reinforcement_For_Stem = ({ wallData }) => {
       );
     };
 
-export default Flexural_Reinforcement_For_Stem;
+export default Stem_Design;
 
 

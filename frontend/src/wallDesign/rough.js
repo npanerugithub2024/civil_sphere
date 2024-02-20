@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import './Walldesign.css';
 import WallVisualizer from './Wallsection.js';
 // src/components/CantileverWallCalculator.js
-import Flexural_Reinforcement_For_Stem from './Wall_Design/Stem_Reinforcement.js';
-
+import Stem_Design from './Wall_Design/Stem_Design.js';
+import Heel_Design from './Wall_Design/Heel_Design.js';
+import Toe_Design from './Wall_Design/Toe_Design.js';
 
 // import React, { useState } from 'react';
 import axios from 'axios';
@@ -123,6 +124,24 @@ const CantileverWallCalculator = () => {
     }
   };
 
+    // State to manage the collapsibility of the Stem_Design component
+    const [isStemDesignVisible, setIsStemDesignVisible] = useState(false);
+    const [isHeelDesignVisible, setIsHeelDesignVisible] = useState(false);
+    const [isToeDesignVisible, setIsToeDesignVisible] = useState(false);
+
+    // Function to toggle the visibility
+    const toggleStemDesignVisibility = () => {
+      setIsStemDesignVisible(!isStemDesignVisible);
+    };
+    
+    const toggleHeelDesignVisibility = () => {
+      setIsHeelDesignVisible(!isHeelDesignVisible);
+    };
+
+    const toggleToeDesignVisibility = () => {
+      setIsToeDesignVisible(!isToeDesignVisible);
+    };
+
   
  
   return (
@@ -237,9 +256,32 @@ const CantileverWallCalculator = () => {
           tableHeading="Service I - Maximum Loading:" 
         />
 
-        <Flexural_Reinforcement_For_Stem 
-          wallData={wallData} 
-        />
+       <div>
+          <button onClick={toggleStemDesignVisibility} aria-expanded={isStemDesignVisible} className="collapse-button">
+            {isStemDesignVisible ? '▲ Collapse' : '▼ Expand'} Stem Design
+          </button>
+          {/* Conditional Rendering of the Stem_Design Component */}
+          {isStemDesignVisible && <Stem_Design wallData={wallData} />}
+       </div>
+
+       <div>
+          <button onClick={toggleHeelDesignVisibility} aria-expanded={isHeelDesignVisible} className="collapse-button">
+            {isHeelDesignVisible ? '▲ Collapse' : '▼ Expand'} Heel Design
+          </button>
+          {/* Conditional Rendering of the Heel_Design Component */}
+          {isHeelDesignVisible && <Heel_Design wallData={wallData} />}
+       </div>
+
+       <div>
+          <button onClick={toggleToeDesignVisibility} aria-expanded={isToeDesignVisible} className="collapse-button">
+            {isToeDesignVisible ? '▲ Collapse' : '▼ Expand'} Toe Design
+          </button>
+          {/* Conditional Rendering of the Toe_Design Component */}
+          {isToeDesignVisible && <Toe_Design wallData={wallData}  />}
+       </div>
+       
+
+
 
         
       </div>

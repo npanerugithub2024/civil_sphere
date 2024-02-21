@@ -125,9 +125,18 @@ const CantileverWallCalculator = () => {
   };
 
     // State to manage the collapsibility of the Stem_Design component
+    const [isLoadTablesVisible, setIsLoadTablesVisible] = useState(false);
+    
     const [isStemDesignVisible, setIsStemDesignVisible] = useState(false);
     const [isHeelDesignVisible, setIsHeelDesignVisible] = useState(false);
     const [isToeDesignVisible, setIsToeDesignVisible] = useState(false);
+    const [isAllVisible, setIsAllVisible] = useState(false);
+
+
+    // Function to toggle the visibility
+    const toggleLoadTablesVisibility = () => {
+      setIsLoadTablesVisible(!isLoadTablesVisible);
+    };
 
     // Function to toggle the visibility
     const toggleStemDesignVisibility = () => {
@@ -142,154 +151,177 @@ const CantileverWallCalculator = () => {
       setIsToeDesignVisible(!isToeDesignVisible);
     };
 
+    const toggleAllVisibility = () => {
+      setIsLoadTablesVisible(!isLoadTablesVisible);
+      setIsStemDesignVisible(!isStemDesignVisible);
+      setIsHeelDesignVisible(!isHeelDesignVisible);
+      setIsToeDesignVisible(!isToeDesignVisible);
+
+    };
+
   
  
   return (
     <div className="wall-form-container">
-      <WallVisualizer wallData={wallData} />
-      <h2>Wall Specifications</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={wallData.name}
-            onChange={handleChange}
-            min="0" //prevent wallData less than 0
-          />
-        </div>
-        <h3>Dimensions</h3>
-        <div className="dimensions-group">
-          {['toelength_a', 'wallthick_b', 'heellength_c', 'stemheight_H', 'footingdepth_Hf', 'lengthoffooting_Lf'].map(field => (
-            <div key={field} className="form-group">
-              <label htmlFor={field}>{createLabel(field)}</label>
-              <input
-                type="number"
-                id={field}
-                name={field}
-                value={wallData[field]}
-                onChange={handleChange}
-                min="0" //prevent wallData less than 0
-              />
-            </div>
-          ))}
-        </div>
-        
-        <h3>Key Dimensions</h3>
-        <div className="key-dimensions-group">
-          {['keydistancefromrotatingpoint', 'keydepth', 'keywidth'].map(field => (
-            <div key={field} className="form-group">
-              <label htmlFor={field}>{createLabel(field)}</label>
-              <input
-                type="number"
-                id={field}
-                name={field}
-                value={wallData[field]}
-                onChange={handleChange}
-                min="0" //prevent wallData less than 0
-              />
-            </div>
-          ))}
-        </div>
-
-        <h3>Material Properties & Factors</h3>
-        <div className="properties-factors-group">
-          {[
-            'concreteunitweight', 'soilunitweight', 'frictionangle', 
-            'factoredbearingresistanceinstrength', 'factoredbearingresistanceinservice',
-            'coefficientoffriction_f', 'resistancefactorforsliding', 'heq'
-          ].map(field => (
-            <div key={field} className="form-group">
-              <label htmlFor={field}>{createLabel(field)}</label>
-              <input
-                type="number"
-                id={field}
-                name={field}
-                value={wallData[field]}
-                onChange={handleChange}
-                min="0" //prevent wallData less than 0
-              />
-            </div>
-          ))}
-        </div>
-        
-        <button type="submit">Submit Wall Data</button>
-      </form>
       <div>
-        <WeightDisplayTable wallData={wallData} />
-        <UnfactoredLoadTable wallData={wallData} />
-        <LoadCombinationTable1 
-          wallData={wallData} 
-          loadFactor={{
-            RW_f: 1.25, 
-            EV_f: 1.35,
-            EH_f: 1.5,
-            LS_f: 1.75,
-            PH_f: 0 // Adjust these values as needed
-          }} 
-          tableHeading="Strength I - Maximum Loading" 
-        />
+        <WallVisualizer wallData={wallData} />
+        <div id = "Wall-Form-Data-Entry">
+          <h2>Wall Specifications</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={wallData.name}
+                onChange={handleChange}
+                min="0" //prevent wallData less than 0
+              />
+            </div>
+            <h3>Dimensions</h3>
+            <div className="dimensions-group">
+              {['toelength_a', 'wallthick_b', 'heellength_c', 'stemheight_H', 'footingdepth_Hf', 'lengthoffooting_Lf'].map(field => (
+                <div key={field} className="form-group">
+                  <label htmlFor={field}>{createLabel(field)}</label>
+                  <input
+                    type="number"
+                    id={field}
+                    name={field}
+                    value={wallData[field]}
+                    onChange={handleChange}
+                    min="0" //prevent wallData less than 0
+                  />
+                </div>
+              ))}
+            </div>
+            
+            <h3>Key Dimensions</h3>
+            <div className="key-dimensions-group">
+              {['keydistancefromrotatingpoint', 'keydepth', 'keywidth'].map(field => (
+                <div key={field} className="form-group">
+                  <label htmlFor={field}>{createLabel(field)}</label>
+                  <input
+                    type="number"
+                    id={field}
+                    name={field}
+                    value={wallData[field]}
+                    onChange={handleChange}
+                    min="0" //prevent wallData less than 0
+                  />
+                </div>
+              ))}
+            </div>
 
-        <LoadCombinationTable1 
-          wallData={wallData} 
-          loadFactor={{
-            RW_f: 0.9, 
-            EV_f: 1,
-            EH_f: 1.5,
-            PH_f: -0.5,
-            LS_f: 1.75             // Adjust these values as needed
-          }} 
-          tableHeading="Strength I - Minimum Loading - Eccentricity Check" 
-        />
-
-        <LoadCombinationTable1 
-          wallData={wallData} 
-          loadFactor={{
-            RW_f: 1, 
-            EV_f: 1,
-            EH_f: 1,
-            PH_f: 0,
-            LS_f: 1             // Adjust these values as needed
-          }} 
-          tableHeading="Service I - Maximum Loading:" 
-        />
-
-       <div>
-          <button onClick={toggleStemDesignVisibility} aria-expanded={isStemDesignVisible} className="collapse-button">
-            {isStemDesignVisible ? '▲ Collapse' : '▼ Expand'} Stem Design
-          </button>
-          {/* Conditional Rendering of the Stem_Design Component */}
-          {isStemDesignVisible && <Stem_Design wallData={wallData} />}
-       </div>
-
-       <div>
-          <button onClick={toggleHeelDesignVisibility} aria-expanded={isHeelDesignVisible} className="collapse-button">
-            {isHeelDesignVisible ? '▲ Collapse' : '▼ Expand'} Heel Design
-          </button>
-          {/* Conditional Rendering of the Heel_Design Component */}
-          {isHeelDesignVisible && <Heel_Design wallData={wallData} />}
-       </div>
-
-       <div>
-          <button onClick={toggleToeDesignVisibility} aria-expanded={isToeDesignVisible} className="collapse-button">
-            {isToeDesignVisible ? '▲ Collapse' : '▼ Expand'} Toe Design
-          </button>
-          {/* Conditional Rendering of the Toe_Design Component */}
-          {isToeDesignVisible && <Toe_Design wallData={wallData}  />}
-       </div>
-       
-
-
-
-        
+            <h3>Material Properties & Factors</h3>
+            <div className="properties-factors-group">
+              {[
+                'concreteunitweight', 'soilunitweight', 'frictionangle', 
+                'factoredbearingresistanceinstrength', 'factoredbearingresistanceinservice',
+                'coefficientoffriction_f', 'resistancefactorforsliding', 'heq'
+              ].map(field => (
+                <div key={field} className="form-group">
+                  <label htmlFor={field}>{createLabel(field)}</label>
+                  <input
+                    type="number"
+                    id={field}
+                    name={field}
+                    value={wallData[field]}
+                    onChange={handleChange}
+                    min="0" //prevent wallData less than 0
+                  />
+                </div>
+              ))}
+            </div>
+            
+            <button type="submit">Submit Wall Data</button>
+          </form>
+        </div>
       </div>
+      
+      <div>
+        <div className = "CantileverWallButtonRows">
+          <button onClick={toggleLoadTablesVisibility} aria-expanded={isLoadTablesVisible} className="collapse-button">
+            {isLoadTablesVisible ? '▲ Collapse' : '▼ Expand'} Load Calculation Tables
+          </button>
+          
+          <button onClick={toggleStemDesignVisibility} aria-expanded={isStemDesignVisible} className="collapse-button">
+                {isStemDesignVisible ? '▲ Collapse' : '▼ Expand'} Stem Design
+          </button>
 
-     
+          <button onClick={toggleHeelDesignVisibility} aria-expanded={isHeelDesignVisible} className="collapse-button">
+                {isHeelDesignVisible ? '▲ Collapse' : '▼ Expand'} Heel Design
+          </button>
 
+          <button onClick={toggleToeDesignVisibility} aria-expanded={isToeDesignVisible} className="collapse-button">
+                {isToeDesignVisible ? '▲ Collapse' : '▼ Expand'} Toe Design
+            </button>
 
+            <button onClick={toggleAllVisibility} aria-expanded={isAllVisible} className="collapse-button">
+                 SWITCH VISIBLITY
+            </button>
 
+        </div>
+
+        <div className = "DesignSheetsCantileverWall">
+          <div>
+            {isLoadTablesVisible && 
+              <div>
+                <WeightDisplayTable wallData={wallData} />
+                <UnfactoredLoadTable wallData={wallData} />
+                <LoadCombinationTable1 
+                  wallData={wallData} 
+                  loadFactor={{
+                    RW_f: 1.25, 
+                    EV_f: 1.35,
+                    EH_f: 1.5,
+                    LS_f: 1.75,
+                    PH_f: 0 // Adjust these values as needed
+                  }} 
+                  tableHeading="Strength I - Maximum Loading" 
+                />
+
+                <LoadCombinationTable1 
+                  wallData={wallData} 
+                  loadFactor={{
+                    RW_f: 0.9, 
+                    EV_f: 1,
+                    EH_f: 1.5,
+                    PH_f: -0.5,
+                    LS_f: 1.75             // Adjust these values as needed
+                  }} 
+                  tableHeading="Strength I - Minimum Loading - Eccentricity Check" 
+                />
+
+                <LoadCombinationTable1 
+                  wallData={wallData} 
+                  loadFactor={{
+                    RW_f: 1, 
+                    EV_f: 1,
+                    EH_f: 1,
+                    PH_f: 0,
+                    LS_f: 1             // Adjust these values as needed
+                  }} 
+                  tableHeading="Service I - Maximum Loading:" 
+                />
+              </div>
+            }
+          </div>
+
+          <div>           
+            {isStemDesignVisible && <Stem_Design wallData={wallData} />}
+          </div>
+
+          <div>
+            {isHeelDesignVisible && <Heel_Design wallData={wallData} />}
+          </div>
+
+          <div>              
+            {isToeDesignVisible && <Toe_Design wallData={wallData}  />}
+          </div>
+       </div>
+      </div>
+      
     </div>
   );
 };

@@ -109,6 +109,7 @@ const Heel_Design = ({ wallData }) => {
             factoredMoment={largerTotalFactored_M}
             factoredShear = {largerTotalFactored_W}
             serviceFactoredMoment =  {serviceLoad.totalFactored_M}
+            isShearKey = {true}
           />
         </div>
          

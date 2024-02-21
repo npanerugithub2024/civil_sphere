@@ -150,7 +150,7 @@ const Toe_Design = ({ wallData }) => {
 
     return (
         <div >
-        <h2>HEEL DESIGN </h2>
+        <h2>TOE DESIGN </h2>
         <h3>Top transverse reinforcement - Footing heel</h3>
         <p><i>This acts as a cantilever beam. Face of the wall is the critical region.</i></p>
             <Toe_Load_Case_Table 
@@ -185,6 +185,7 @@ const Toe_Design = ({ wallData }) => {
             factoredMoment={largerTotalFactored_M}
             factoredShear = {largerTotalFactored_W}
             serviceFactoredMoment =  {serviceLoad.totalFactored_M}
+            isShearKey = {false}
           />
         </div> 
          

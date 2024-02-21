@@ -1,50 +1,59 @@
 import React, { useState, useEffect } from 'react';
 
-const Rebar_Calculation_Heel = ({ wallData,thicknessOfWall, factoredMoment, factoredShear,serviceFactoredMoment, isShearKey }) => {
+const Rebar_Calculation_Heel = ({ wallData,thicknessOfWall, factoredMoment, factoredShear,serviceFactoredMoment }) => {
 
-    // State for inputs
-    const [rebarDiameterMain, setrebarDiameterMain] = useState(0.875);
-    const [concreteCover, setConcreteCover] = useState(2);
-    const [rebarYieldStrength, setRebarYieldStrength] = useState(60);
-    const [concreteCompressiveStrength, setConcreteCompressiveStrength] = useState(3);
-    const [resistanceFactor, setResistanceFactor] = useState(0.9);
-    const [equivalentWidth, setEquivalentWidth] = useState(12); 
-    const [barSpacingMain, setbarSpacingMain] = useState(12); 
-    
-    // Calculations for Moment Check
-    const d = thicknessOfWall*12 - concreteCover - (rebarDiameterMain / 2);
-    const AsMain = Math.PI * (rebarDiameterMain / 2) ** 2 * equivalentWidth/barSpacingMain;
-    const Mn = (d - (AsMain*rebarYieldStrength)/(1.7*concreteCompressiveStrength*equivalentWidth))*AsMain*rebarYieldStrength ; // Nominal moment capacity in kip-inches
-    const nominalMomentCapacityKft = Mn/12; // Convert kip-inches to kip-feet
-    const reducedNominalMomentCapacity = nominalMomentCapacityKft * resistanceFactor;
-    const momentCheck = reducedNominalMomentCapacity > factoredMoment ? " GOOD" : "NOT GOOD";
-    
-    
-    // Calculations for Bar TEMPERATURE and Shrinkage
-    const [rebarDiameterTemperature, setrebarDiameterTemperature] = useState(0.5);
-    const [barSpacingTemperature, setbarSpacingTemperature] = useState(12); 
-    const rebarAreaTemperature = Math.PI * (rebarDiameterTemperature / 2) ** 2;
-    const AsTemperature = Math.PI * (rebarDiameterTemperature / 2) ** 2 * equivalentWidth/barSpacingTemperature;  
+  // State for inputs
+  const [rebarDiameterMain, setrebarDiameterMain] = useState(0.875);
+  const [concreteCover, setConcreteCover] = useState(2);
+  const [rebarYieldStrength, setRebarYieldStrength] = useState(60);
+  const [concreteCompressiveStrength, setConcreteCompressiveStrength] = useState(3);
+  const [resistanceFactor, setResistanceFactor] = useState(0.9);
+  const [equivalentWidth, setEquivalentWidth] = useState(12); 
+  const [barSpacingMain, setbarSpacingMain] = useState(12); 
+  
+  // Calculations for Moment Check
+  const d = thicknessOfWall*12 - concreteCover - (rebarDiameterMain / 2);
+  const AsMain = Math.PI * (rebarDiameterMain / 2) ** 2 * equivalentWidth/barSpacingMain;
+  const Mn = (d - (AsMain*rebarYieldStrength)/(1.7*concreteCompressiveStrength*equivalentWidth))*AsMain*rebarYieldStrength ; // Nominal moment capacity in kip-inches
+  const nominalMomentCapacityKft = Mn/12; // Convert kip-inches to kip-feet
+  const reducedNominalMomentCapacity = nominalMomentCapacityKft * resistanceFactor;
+  const momentCheck = reducedNominalMomentCapacity > factoredMoment ? " GOOD" : "NOT GOOD";
+  
+ 
+  // Calculations for Bar TEMPERATURE and Shrinkage
+  const [rebarDiameterTemperature, setrebarDiameterTemperature] = useState(0.5);
+  const [barSpacingTemperature, setbarSpacingTemperature] = useState(12); 
+  const rebarAreaTemperature = Math.PI * (rebarDiameterTemperature / 2) ** 2;
+  const AsTemperature = Math.PI * (rebarDiameterTemperature / 2) ** 2 * equivalentWidth/barSpacingTemperature;  
 
-    const As_LRDF_5_10_8_1 = 1.3*equivalentWidth*thicknessOfWall*12/(2*(equivalentWidth+thicknessOfWall*12) * rebarYieldStrength )
-    const As_LRDF_5_10_8_1_double = As_LRDF_5_10_8_1*2
-    const As_LRDF_5_10_8_1_check = AsTemperature > As_LRDF_5_10_8_1 ? " GOOD" : "NOT GOOD";
-    
+  const As_LRDF_5_10_8_1 = 1.3*equivalentWidth*thicknessOfWall*12/(2*(equivalentWidth+thicknessOfWall*12) * rebarYieldStrength )
+  const As_LRDF_5_10_8_1_double = As_LRDF_5_10_8_1*2
+  const As_LRDF_5_10_8_1_check = AsTemperature > As_LRDF_5_10_8_1 ? " GOOD" : "NOT GOOD";
+ 
+//   const As_ACI_Table_11_6_1_longitudinal_ratio = ( rebarAreaTemperature <= 0.31 && concreteCompressiveStrength >= 60) ? 0.0012 : 0.0015;
+//   const As_ACI_Table_11_6_1_longitudinal = As_ACI_Table_11_6_1_longitudinal_ratio * equivalentWidth*thicknessOfWall*12
+//   const As_ACI_Table_11_6_1_longitudinal_check = AsTemperature*2 > As_ACI_Table_11_6_1_longitudinal ? " GOOD" : "NOT GOOD";
+
+//   const As_ACI_Table_11_6_1_transverse_ratio = ( rebarAreaTemperature <= 0.31 && concreteCompressiveStrength >= 60) ? 0.002 : 0.0025;
+//   const As_ACI_Table_11_6_1_transverse = As_ACI_Table_11_6_1_transverse_ratio * equivalentWidth*thicknessOfWall*12
+//   const As_ACI_Table_11_6_1_transverse_check = AsTemperature*2 > As_ACI_Table_11_6_1_transverse ? " GOOD" : "NOT GOOD";
+//   const As_transverse_both_sides = AsTemperature + AsMain ;
+
 // Calculations for MINIMUM REINFORCEMENT
     const M_factored1_33 =  1.33*factoredMoment*12;
     const fr_modulus = 0.24 *( concreteCompressiveStrength) **0.5;
 
-    const [gamma1,setGamma1 ] = useState(1.6);
-    const [gamma2,setGamma2 ] = useState(0);
-    const [gamma3,setGamma3 ] = useState(0.67);
-    const [fcpe, setFcpe ]  = useState(0.0);
-    const Mndc = 0.0;
-    const sectionModulus_Sc_Monolithic = (equivalentWidth * (thicknessOfWall*12)**2)/6;
-    const sectionModulus_Sc_Composite = sectionModulus_Sc_Monolithic;
-    //   const Mcr = ((fr_modulus*gamma1 + gamma2*fcpe)*sectionModulus_Sc_Composite - (Mndc*gamma1 + Mndc*((sectionModulus_Sc_Composite/sectionModulus_Sc_Monolithic)-1)))*gamma3;
-    const Mcr = ((gamma1*fr_modulus + gamma2*fcpe)*sectionModulus_Sc_Composite - (Mndc*((sectionModulus_Sc_Composite/sectionModulus_Sc_Monolithic)-1)))*gamma3;
-    const minimumReinforcementMoment =   Math.min(Mcr, M_factored1_33);
-    const minimumReinforcementMomentCheck = minimumReinforcementMoment/12 > reducedNominalMomentCapacity ? " NOT GOOD" : "GOOD";
+  const [gamma1,setGamma1 ] = useState(1.6);
+  const [gamma2,setGamma2 ] = useState(0);
+  const [gamma3,setGamma3 ] = useState(0.67);
+  const [fcpe, setFcpe ]  = useState(0.0);
+  const Mndc = 0.0;
+  const sectionModulus_Sc_Monolithic = (equivalentWidth * (thicknessOfWall*12)**2)/6;
+  const sectionModulus_Sc_Composite = sectionModulus_Sc_Monolithic;
+//   const Mcr = ((fr_modulus*gamma1 + gamma2*fcpe)*sectionModulus_Sc_Composite - (Mndc*gamma1 + Mndc*((sectionModulus_Sc_Composite/sectionModulus_Sc_Monolithic)-1)))*gamma3;
+  const Mcr = ((gamma1*fr_modulus + gamma2*fcpe)*sectionModulus_Sc_Composite - (Mndc*((sectionModulus_Sc_Composite/sectionModulus_Sc_Monolithic)-1)))*gamma3;
+  const minimumReinforcementMoment =   Math.min(Mcr, M_factored1_33);
+  const minimumReinforcementMomentCheck = minimumReinforcementMoment/12 > reducedNominalMomentCapacity ? " NOT GOOD" : "GOOD";
 
 //  CALCULATIONS FOR CRAC-CONTROL-MAXIMUM SPACING
     const crack_dc = 2+rebarDiameterMain/2;
@@ -100,7 +109,6 @@ const Rebar_Calculation_Heel = ({ wallData,thicknessOfWall, factoredMoment, fact
     const keyMu = keyDesignShearForce* wallData.keydepth*12/24;
     const keyMomentCheck = keyMu > keyReducedNominalMomentCapacity  ? " NOT GOOD" : "GOOD";
    
-
 
   return (
     <div>
@@ -367,8 +375,7 @@ const Rebar_Calculation_Heel = ({ wallData,thicknessOfWall, factoredMoment, fact
                 <p>Shear Check. <b>{shear_Vc_Factored_check}</b></p>           
             </div>
         </div>
-            
-        {isShearKey &&   
+
         <div className = 'ShearKeyCheck'>
             <h3>SHEAR KEY</h3>
             <form>
@@ -439,7 +446,7 @@ const Rebar_Calculation_Heel = ({ wallData,thicknessOfWall, factoredMoment, fact
             
             </div>
         </div>
-        }
+
 
 
     </div>

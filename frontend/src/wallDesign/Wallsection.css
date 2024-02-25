@@ -13,3 +13,8 @@
     padding: 5px;
   }
   
+  .wall-visualizer-svg {
+    background-color: white;
+    border : 0.25px solid gray ;
+    border-radius: 10px; 
+  }

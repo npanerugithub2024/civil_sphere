@@ -25,6 +25,8 @@
 .DesignSheetsCantileverWall {
   margin: 5px;
   padding : 10px;
+  background-color: white;
+  border-radius: 1em;
 }
 
 .form-group {
@@ -102,3 +104,6 @@ button[type="submit"]:hover {
   padding: 0.5em;
   margin: auto;
 }
+
+#Toe_Load_Calculation_Table th:nth-of-type(1){width :25%}
+
